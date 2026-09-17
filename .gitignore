@@ -1,0 +1,30 @@
+# Secrets — never commit real keys
+.env
+.env.local
+.env.*.local
+
+# Dependencies & build
+node_modules/
+dist/
+tsconfig.tsbuildinfo
+tsconfig.local.json
+*.local.json
+
+# Catalog / audit render output
+output/
+
+# Agent skill bundles (local Cursor tooling; not part of the demo product)
+.agents/
+
+# Cursor project metadata (optional local)
+.cursor/
+
+# Lock files from other package managers
+yarn.lock
+pnpm-lock.yaml
+
+# OS
+.DS_Store
+
+# Release scratch
+release/

@@ -1,0 +1,17 @@
+{
+  "id": "bean-there-bean-good",
+  "name": "Bean there Bean good",
+  "extends": "../master.json",
+  "description": "Customer override for Bean there Bean good \u2014 logo, palette, and contact only (extends master).",
+  "variables": {
+    "brandName": "Bean there Bean good",
+    "logoUri": "/images/logo-bean.png",
+    "primaryColor": "#050087",
+    "secondaryColor": "#F1E1C7",
+    "contactName": "Bean there Bean good",
+    "contactPhone": "+1 (415) 555-0142",
+    "contactEmail": "hello@beanthere.example",
+    "contactAddress": "214 Folger Ave, San Francisco, CA",
+    "legalDisclaimer": "\u00a9 Bean there Bean good. All rights reserved."
+  }
+}

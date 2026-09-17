@@ -1,0 +1,4682 @@
+{
+  "version": "1.0.0",
+  "description": "Product catalog for CE.SDK swag personalization. Each product defines artworkLocation, a setSourceSet-compatible heroImage ({uri,width,height}), and campaign copy (headline/body/cta).",
+  "count": 50,
+  "products": [
+    {
+      "id": "tshirt-01",
+      "name": "Classic Tee 1",
+      "category": "apparel",
+      "sku": "APT-TEE-1000",
+      "designUnit": "Inch",
+      "unitPrice": 18,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 1 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-02",
+      "name": "Classic Tee 2",
+      "category": "apparel",
+      "sku": "APT-TEE-1001",
+      "designUnit": "Inch",
+      "unitPrice": 19,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 2 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-03",
+      "name": "Classic Tee 3",
+      "category": "apparel",
+      "sku": "APT-TEE-1002",
+      "designUnit": "Inch",
+      "unitPrice": 20,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 3 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-04",
+      "name": "Classic Tee 4",
+      "category": "apparel",
+      "sku": "APT-TEE-1003",
+      "designUnit": "Inch",
+      "unitPrice": 21,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 4 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-05",
+      "name": "Classic Tee 5",
+      "category": "apparel",
+      "sku": "APT-TEE-1004",
+      "designUnit": "Inch",
+      "unitPrice": 22,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 5 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-06",
+      "name": "Classic Tee 6",
+      "category": "apparel",
+      "sku": "APT-TEE-1005",
+      "designUnit": "Inch",
+      "unitPrice": 18,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 6 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-07",
+      "name": "Classic Tee 7",
+      "category": "apparel",
+      "sku": "APT-TEE-1006",
+      "designUnit": "Inch",
+      "unitPrice": 19,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 7 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-08",
+      "name": "Classic Tee 8",
+      "category": "apparel",
+      "sku": "APT-TEE-1007",
+      "designUnit": "Inch",
+      "unitPrice": 20,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 8 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-09",
+      "name": "Classic Tee 9",
+      "category": "apparel",
+      "sku": "APT-TEE-1008",
+      "designUnit": "Inch",
+      "unitPrice": 21,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 9 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "tshirt-10",
+      "name": "Classic Tee 10",
+      "category": "apparel",
+      "sku": "APT-TEE-1009",
+      "designUnit": "Inch",
+      "unitPrice": 22,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 194,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_front.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 227,
+            "y": 214,
+            "width": 360,
+            "height": 360,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tshirt/{{color}}_back.png",
+                "width": 814,
+                "height": 947
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Classic Tee 10 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "hoodie-01",
+      "name": "Pullover Hoodie 1",
+      "category": "apparel",
+      "sku": "APT-HDY-2000",
+      "designUnit": "Inch",
+      "unitPrice": 42,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        },
+        {
+          "id": "xxl",
+          "label": "XXL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 14
+          },
+          "artworkLocation": {
+            "x": 260,
+            "y": 280,
+            "width": 380,
+            "height": 420,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/hoodie/{{color}}_front.png",
+                "width": 900,
+                "height": 1100
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Pullover Hoodie 1 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "hoodie-02",
+      "name": "Pullover Hoodie 2",
+      "category": "apparel",
+      "sku": "APT-HDY-2001",
+      "designUnit": "Inch",
+      "unitPrice": 43,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        },
+        {
+          "id": "xxl",
+          "label": "XXL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 14
+          },
+          "artworkLocation": {
+            "x": 260,
+            "y": 280,
+            "width": 380,
+            "height": 420,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/hoodie/{{color}}_front.png",
+                "width": 900,
+                "height": 1100
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Pullover Hoodie 2 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "hoodie-03",
+      "name": "Pullover Hoodie 3",
+      "category": "apparel",
+      "sku": "APT-HDY-2002",
+      "designUnit": "Inch",
+      "unitPrice": 44,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        },
+        {
+          "id": "xxl",
+          "label": "XXL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 14
+          },
+          "artworkLocation": {
+            "x": 260,
+            "y": 280,
+            "width": 380,
+            "height": 420,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/hoodie/{{color}}_front.png",
+                "width": 900,
+                "height": 1100
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Pullover Hoodie 3 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "hoodie-04",
+      "name": "Pullover Hoodie 4",
+      "category": "apparel",
+      "sku": "APT-HDY-2003",
+      "designUnit": "Inch",
+      "unitPrice": 45,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        },
+        {
+          "id": "xxl",
+          "label": "XXL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 14
+          },
+          "artworkLocation": {
+            "x": 260,
+            "y": 280,
+            "width": 380,
+            "height": 420,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/hoodie/{{color}}_front.png",
+                "width": 900,
+                "height": 1100
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Pullover Hoodie 4 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "hoodie-05",
+      "name": "Pullover Hoodie 5",
+      "category": "apparel",
+      "sku": "APT-HDY-2004",
+      "designUnit": "Inch",
+      "unitPrice": 46,
+      "sizes": [
+        {
+          "id": "s",
+          "label": "S"
+        },
+        {
+          "id": "m",
+          "label": "M"
+        },
+        {
+          "id": "l",
+          "label": "L"
+        },
+        {
+          "id": "xl",
+          "label": "XL"
+        },
+        {
+          "id": "xxl",
+          "label": "XXL"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 14
+          },
+          "artworkLocation": {
+            "x": 260,
+            "y": 280,
+            "width": 380,
+            "height": 420,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/hoodie/{{color}}_front.png",
+                "width": 900,
+                "height": 1100
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Pullover Hoodie 5 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "cap-01",
+      "name": "Dad Cap 1",
+      "category": "apparel",
+      "sku": "APT-CAP-3000",
+      "designUnit": "Inch",
+      "unitPrice": 22,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front Panel",
+          "pageSize": {
+            "width": 4.5,
+            "height": 2.5
+          },
+          "artworkLocation": {
+            "x": 218,
+            "y": 230,
+            "width": 300,
+            "height": 200,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_front.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back Strap",
+          "pageSize": {
+            "width": 3,
+            "height": 1.2
+          },
+          "artworkLocation": {
+            "x": 269,
+            "y": 244,
+            "width": 199,
+            "height": 92,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_back.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Dad Cap 1 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "cap-02",
+      "name": "Dad Cap 2",
+      "category": "apparel",
+      "sku": "APT-CAP-3001",
+      "designUnit": "Inch",
+      "unitPrice": 23,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front Panel",
+          "pageSize": {
+            "width": 4.5,
+            "height": 2.5
+          },
+          "artworkLocation": {
+            "x": 218,
+            "y": 230,
+            "width": 300,
+            "height": 200,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_front.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back Strap",
+          "pageSize": {
+            "width": 3,
+            "height": 1.2
+          },
+          "artworkLocation": {
+            "x": 269,
+            "y": 244,
+            "width": 199,
+            "height": 92,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_back.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Dad Cap 2 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "cap-03",
+      "name": "Dad Cap 3",
+      "category": "apparel",
+      "sku": "APT-CAP-3002",
+      "designUnit": "Inch",
+      "unitPrice": 24,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front Panel",
+          "pageSize": {
+            "width": 4.5,
+            "height": 2.5
+          },
+          "artworkLocation": {
+            "x": 218,
+            "y": 230,
+            "width": 300,
+            "height": 200,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_front.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back Strap",
+          "pageSize": {
+            "width": 3,
+            "height": 1.2
+          },
+          "artworkLocation": {
+            "x": 269,
+            "y": 244,
+            "width": 199,
+            "height": 92,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_back.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Dad Cap 3 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "cap-04",
+      "name": "Dad Cap 4",
+      "category": "apparel",
+      "sku": "APT-CAP-3003",
+      "designUnit": "Inch",
+      "unitPrice": 22,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front Panel",
+          "pageSize": {
+            "width": 4.5,
+            "height": 2.5
+          },
+          "artworkLocation": {
+            "x": 218,
+            "y": 230,
+            "width": 300,
+            "height": 200,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_front.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back Strap",
+          "pageSize": {
+            "width": 3,
+            "height": 1.2
+          },
+          "artworkLocation": {
+            "x": 269,
+            "y": 244,
+            "width": 199,
+            "height": 92,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_back.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Dad Cap 4 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "cap-05",
+      "name": "Dad Cap 5",
+      "category": "apparel",
+      "sku": "APT-CAP-3004",
+      "designUnit": "Inch",
+      "unitPrice": 23,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front Panel",
+          "pageSize": {
+            "width": 4.5,
+            "height": 2.5
+          },
+          "artworkLocation": {
+            "x": 218,
+            "y": 230,
+            "width": 300,
+            "height": 200,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_front.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "label": "Back Strap",
+          "pageSize": {
+            "width": 3,
+            "height": 1.2
+          },
+          "artworkLocation": {
+            "x": 269,
+            "y": 244,
+            "width": 199,
+            "height": 92,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/cap/{{color}}_back.png",
+                "width": 736,
+                "height": 760
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Dad Cap 5 — made for your brand",
+      "body": "Soft hand-feel, durable print, ready for everyday wear.",
+      "cta": "Shop the fit",
+      "heroImage": {
+        "uri": "/images/placeholder-1.png",
+        "width": 240,
+        "height": 240
+      }
+    },
+    {
+      "id": "mug-01",
+      "name": "Ceramic Mug 1",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4000",
+      "designUnit": "Inch",
+      "unitPrice": 14,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 1 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "mug-02",
+      "name": "Ceramic Mug 2",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4001",
+      "designUnit": "Inch",
+      "unitPrice": 15,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 2 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "mug-03",
+      "name": "Ceramic Mug 3",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4002",
+      "designUnit": "Inch",
+      "unitPrice": 16,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 3 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "mug-04",
+      "name": "Ceramic Mug 4",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4003",
+      "designUnit": "Inch",
+      "unitPrice": 17,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 4 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "mug-05",
+      "name": "Ceramic Mug 5",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4004",
+      "designUnit": "Inch",
+      "unitPrice": 14,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 5 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "mug-06",
+      "name": "Ceramic Mug 6",
+      "category": "drinkware",
+      "sku": "DRK-MUG-4005",
+      "designUnit": "Inch",
+      "unitPrice": 15,
+      "sizes": [
+        {
+          "id": "11oz",
+          "label": "11oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 8.5,
+            "height": 3.5
+          },
+          "artworkLocation": {
+            "x": 155,
+            "y": 186,
+            "width": 300,
+            "height": 386,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/mug/{{color}}_front.png",
+                "width": 841,
+                "height": 762
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Ceramic Mug 6 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "tumbler-01",
+      "name": "Travel Tumbler 1",
+      "category": "drinkware",
+      "sku": "DRK-TMB-4500",
+      "designUnit": "Inch",
+      "unitPrice": 28,
+      "sizes": [
+        {
+          "id": "20oz",
+          "label": "20oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 9,
+            "height": 7
+          },
+          "artworkLocation": {
+            "x": 190,
+            "y": 280,
+            "width": 320,
+            "height": 520,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tumbler/{{color}}_front.png",
+                "width": 700,
+                "height": 1000
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Travel Tumbler 1 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "tumbler-02",
+      "name": "Travel Tumbler 2",
+      "category": "drinkware",
+      "sku": "DRK-TMB-4501",
+      "designUnit": "Inch",
+      "unitPrice": 29,
+      "sizes": [
+        {
+          "id": "20oz",
+          "label": "20oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 9,
+            "height": 7
+          },
+          "artworkLocation": {
+            "x": 190,
+            "y": 280,
+            "width": 320,
+            "height": 520,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tumbler/{{color}}_front.png",
+                "width": 700,
+                "height": 1000
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Travel Tumbler 2 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "tumbler-03",
+      "name": "Travel Tumbler 3",
+      "category": "drinkware",
+      "sku": "DRK-TMB-4502",
+      "designUnit": "Inch",
+      "unitPrice": 30,
+      "sizes": [
+        {
+          "id": "20oz",
+          "label": "20oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 9,
+            "height": 7
+          },
+          "artworkLocation": {
+            "x": 190,
+            "y": 280,
+            "width": 320,
+            "height": 520,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tumbler/{{color}}_front.png",
+                "width": 700,
+                "height": 1000
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Travel Tumbler 3 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "tumbler-04",
+      "name": "Travel Tumbler 4",
+      "category": "drinkware",
+      "sku": "DRK-TMB-4503",
+      "designUnit": "Inch",
+      "unitPrice": 31,
+      "sizes": [
+        {
+          "id": "20oz",
+          "label": "20oz"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "wrap",
+          "label": "Wrap",
+          "pageSize": {
+            "width": 9,
+            "height": 7
+          },
+          "artworkLocation": {
+            "x": 190,
+            "y": 280,
+            "width": 320,
+            "height": 520,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/tumbler/{{color}}_front.png",
+                "width": 700,
+                "height": 1000
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Travel Tumbler 4 — made for your brand",
+      "body": "Dishwasher-safe finish with crisp wrap artwork.",
+      "cta": "Add to cart",
+      "heroImage": {
+        "uri": "/images/placeholder-2.png",
+        "width": 200,
+        "height": 280
+      }
+    },
+    {
+      "id": "phone-case-01",
+      "name": "Phone Case 1",
+      "category": "accessories",
+      "sku": "ACC-PHN-5000",
+      "designUnit": "Inch",
+      "unitPrice": 24,
+      "sizes": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 3,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 73,
+            "y": 321,
+            "width": 348,
+            "height": 341,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/phonecase/{{color}}_back.png",
+                "width": 494,
+                "height": 917
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Phone Case 1 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "phone-case-02",
+      "name": "Phone Case 2",
+      "category": "accessories",
+      "sku": "ACC-PHN-5001",
+      "designUnit": "Inch",
+      "unitPrice": 25,
+      "sizes": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 3,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 73,
+            "y": 321,
+            "width": 348,
+            "height": 341,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/phonecase/{{color}}_back.png",
+                "width": 494,
+                "height": 917
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Phone Case 2 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "phone-case-03",
+      "name": "Phone Case 3",
+      "category": "accessories",
+      "sku": "ACC-PHN-5002",
+      "designUnit": "Inch",
+      "unitPrice": 26,
+      "sizes": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 3,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 73,
+            "y": 321,
+            "width": 348,
+            "height": 341,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/phonecase/{{color}}_back.png",
+                "width": 494,
+                "height": 917
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Phone Case 3 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "phone-case-04",
+      "name": "Phone Case 4",
+      "category": "accessories",
+      "sku": "ACC-PHN-5003",
+      "designUnit": "Inch",
+      "unitPrice": 24,
+      "sizes": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 3,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 73,
+            "y": 321,
+            "width": 348,
+            "height": 341,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/phonecase/{{color}}_back.png",
+                "width": 494,
+                "height": 917
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Phone Case 4 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "phone-case-05",
+      "name": "Phone Case 5",
+      "category": "accessories",
+      "sku": "ACC-PHN-5004",
+      "designUnit": "Inch",
+      "unitPrice": 25,
+      "sizes": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "back",
+          "label": "Back",
+          "pageSize": {
+            "width": 3,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 73,
+            "y": 321,
+            "width": 348,
+            "height": 341,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/phonecase/{{color}}_back.png",
+                "width": 494,
+                "height": 917
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Phone Case 5 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "tote-01",
+      "name": "Canvas Tote 1",
+      "category": "accessories",
+      "sku": "ACC-TOT-5500",
+      "designUnit": "Inch",
+      "unitPrice": 16,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 132,
+            "y": 619,
+            "width": 489,
+            "height": 432,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/totebag/{{color}}_front.png",
+                "width": 751,
+                "height": 1225
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Canvas Tote 1 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "tote-02",
+      "name": "Canvas Tote 2",
+      "category": "accessories",
+      "sku": "ACC-TOT-5501",
+      "designUnit": "Inch",
+      "unitPrice": 17,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 132,
+            "y": 619,
+            "width": 489,
+            "height": 432,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/totebag/{{color}}_front.png",
+                "width": 751,
+                "height": 1225
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Canvas Tote 2 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "tote-03",
+      "name": "Canvas Tote 3",
+      "category": "accessories",
+      "sku": "ACC-TOT-5502",
+      "designUnit": "Inch",
+      "unitPrice": 18,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 132,
+            "y": 619,
+            "width": 489,
+            "height": 432,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/totebag/{{color}}_front.png",
+                "width": 751,
+                "height": 1225
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Canvas Tote 3 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "tote-04",
+      "name": "Canvas Tote 4",
+      "category": "accessories",
+      "sku": "ACC-TOT-5503",
+      "designUnit": "Inch",
+      "unitPrice": 19,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 132,
+            "y": 619,
+            "width": 489,
+            "height": 432,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/totebag/{{color}}_front.png",
+                "width": 751,
+                "height": 1225
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Canvas Tote 4 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "tote-05",
+      "name": "Canvas Tote 5",
+      "category": "accessories",
+      "sku": "ACC-TOT-5504",
+      "designUnit": "Inch",
+      "unitPrice": 20,
+      "sizes": [
+        {
+          "id": "one-size",
+          "label": "One Size"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 12,
+            "height": 12
+          },
+          "artworkLocation": {
+            "x": 132,
+            "y": 619,
+            "width": 489,
+            "height": 432,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/totebag/{{color}}_front.png",
+                "width": 751,
+                "height": 1225
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Canvas Tote 5 — made for your brand",
+      "body": "Everyday carry with your brand front and center.",
+      "cta": "Get yours",
+      "heroImage": {
+        "uri": "/images/placeholder-3.png",
+        "width": 280,
+        "height": 200
+      }
+    },
+    {
+      "id": "poster-01",
+      "name": "Matte Poster 1",
+      "category": "print",
+      "sku": "PRT-POS-6000",
+      "designUnit": "Inch",
+      "unitPrice": 12,
+      "sizes": [
+        {
+          "id": "18x24",
+          "label": "18x24"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "face",
+          "label": "Face",
+          "pageSize": {
+            "width": 18,
+            "height": 24
+          },
+          "artworkLocation": {
+            "x": 60,
+            "y": 60,
+            "width": 780,
+            "height": 1080,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/poster/{{color}}_face.png",
+                "width": 900,
+                "height": 1200
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Matte Poster 1 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "poster-02",
+      "name": "Matte Poster 2",
+      "category": "print",
+      "sku": "PRT-POS-6001",
+      "designUnit": "Inch",
+      "unitPrice": 14,
+      "sizes": [
+        {
+          "id": "18x24",
+          "label": "18x24"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "face",
+          "label": "Face",
+          "pageSize": {
+            "width": 18,
+            "height": 24
+          },
+          "artworkLocation": {
+            "x": 60,
+            "y": 60,
+            "width": 780,
+            "height": 1080,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/poster/{{color}}_face.png",
+                "width": 900,
+                "height": 1200
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Matte Poster 2 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "poster-03",
+      "name": "Matte Poster 3",
+      "category": "print",
+      "sku": "PRT-POS-6002",
+      "designUnit": "Inch",
+      "unitPrice": 16,
+      "sizes": [
+        {
+          "id": "18x24",
+          "label": "18x24"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "face",
+          "label": "Face",
+          "pageSize": {
+            "width": 18,
+            "height": 24
+          },
+          "artworkLocation": {
+            "x": 60,
+            "y": 60,
+            "width": 780,
+            "height": 1080,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/poster/{{color}}_face.png",
+                "width": 900,
+                "height": 1200
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Matte Poster 3 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "poster-04",
+      "name": "Matte Poster 4",
+      "category": "print",
+      "sku": "PRT-POS-6003",
+      "designUnit": "Inch",
+      "unitPrice": 18,
+      "sizes": [
+        {
+          "id": "18x24",
+          "label": "18x24"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "face",
+          "label": "Face",
+          "pageSize": {
+            "width": 18,
+            "height": 24
+          },
+          "artworkLocation": {
+            "x": 60,
+            "y": 60,
+            "width": 780,
+            "height": 1080,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/poster/{{color}}_face.png",
+                "width": 900,
+                "height": 1200
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Matte Poster 4 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "poster-05",
+      "name": "Matte Poster 5",
+      "category": "print",
+      "sku": "PRT-POS-6004",
+      "designUnit": "Inch",
+      "unitPrice": 20,
+      "sizes": [
+        {
+          "id": "18x24",
+          "label": "18x24"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "face",
+          "label": "Face",
+          "pageSize": {
+            "width": 18,
+            "height": 24
+          },
+          "artworkLocation": {
+            "x": 60,
+            "y": 60,
+            "width": 780,
+            "height": 1080,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/poster/{{color}}_face.png",
+                "width": 900,
+                "height": 1200
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Matte Poster 5 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "sticker-sheet-01",
+      "name": "Sticker Sheet 1",
+      "category": "print",
+      "sku": "PRT-STK-6500",
+      "designUnit": "Inch",
+      "unitPrice": 8,
+      "sizes": [
+        {
+          "id": "4x6",
+          "label": "4x6"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "sheet",
+          "label": "Sheet",
+          "pageSize": {
+            "width": 4,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 40,
+            "y": 40,
+            "width": 520,
+            "height": 820,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/sticker/{{color}}_sheet.png",
+                "width": 600,
+                "height": 900
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Sticker Sheet 1 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "sticker-sheet-02",
+      "name": "Sticker Sheet 2",
+      "category": "print",
+      "sku": "PRT-STK-6501",
+      "designUnit": "Inch",
+      "unitPrice": 9,
+      "sizes": [
+        {
+          "id": "4x6",
+          "label": "4x6"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "sheet",
+          "label": "Sheet",
+          "pageSize": {
+            "width": 4,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 40,
+            "y": 40,
+            "width": 520,
+            "height": 820,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/sticker/{{color}}_sheet.png",
+                "width": 600,
+                "height": 900
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Sticker Sheet 2 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "sticker-sheet-03",
+      "name": "Sticker Sheet 3",
+      "category": "print",
+      "sku": "PRT-STK-6502",
+      "designUnit": "Inch",
+      "unitPrice": 10,
+      "sizes": [
+        {
+          "id": "4x6",
+          "label": "4x6"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "sheet",
+          "label": "Sheet",
+          "pageSize": {
+            "width": 4,
+            "height": 6
+          },
+          "artworkLocation": {
+            "x": 40,
+            "y": 40,
+            "width": 520,
+            "height": 820,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/sticker/{{color}}_sheet.png",
+                "width": 600,
+                "height": 900
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Sticker Sheet 3 — made for your brand",
+      "body": "Gallery-ready stock with vivid color reproduction.",
+      "cta": "Order print",
+      "heroImage": {
+        "uri": "/images/minimalist-bean.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "pillow-01",
+      "name": "Throw Pillow 1",
+      "category": "home",
+      "sku": "HOM-PIL-7000",
+      "designUnit": "Inch",
+      "unitPrice": 32,
+      "sizes": [
+        {
+          "id": "18x18",
+          "label": "18x18"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 16,
+            "height": 16
+          },
+          "artworkLocation": {
+            "x": 80,
+            "y": 80,
+            "width": 640,
+            "height": 640,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/pillow/{{color}}_front.png",
+                "width": 800,
+                "height": 800
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Throw Pillow 1 — made for your brand",
+      "body": "Comfort-first materials with lasting print quality.",
+      "cta": "Bring it home",
+      "heroImage": {
+        "uri": "/images/minimalist-scoop.png",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "pillow-02",
+      "name": "Throw Pillow 2",
+      "category": "home",
+      "sku": "HOM-PIL-7001",
+      "designUnit": "Inch",
+      "unitPrice": 35,
+      "sizes": [
+        {
+          "id": "18x18",
+          "label": "18x18"
+        }
+      ],
+      "colors": [
+        {
+          "id": "white",
+          "label": "White",
+          "colorHex": "#FFFFFF",
+          "isDefault": true
+        },
+        {
+          "id": "black",
+          "label": "Black",
+          "colorHex": "#000000"
+        },
+        {
+          "id": "navy",
+          "label": "Navy",
+          "colorHex": "#0B1F3A"
+        },
+        {
+          "id": "forest",
+          "label": "Forest",
+          "colorHex": "#2E573E"
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "colorHex": "#E85D4C"
+        },
+        {
+          "id": "sand",
+          "label": "Sand",
+          "colorHex": "#E8D5B7"
+        }
+      ],
+      "areas": [
+        {
+          "id": "front",
+          "label": "Front",
+          "pageSize": {
+            "width": 16,
+            "height": 16
+          },
+          "artworkLocation": {
+            "x": 80,
+            "y": 80,
+            "width": 640,
+            "height": 640,
+            "unit": "px",
+            "coordinateSpace": "mockup"
+          },
+          "mockup": {
+            "images": [
+              {
+                "uri": "/assets/products/pillow/{{color}}_front.png",
+                "width": 800,
+                "height": 800
+              }
+            ]
+          }
+        }
+      ],
+      "headline": "Throw Pillow 2 — made for your brand",
+      "body": "Comfort-first materials with lasting print quality.",
+      "cta": "Bring it home",
+      "heroImage": {
+        "uri": "/images/minimalist-scoop.png",
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ]
+}

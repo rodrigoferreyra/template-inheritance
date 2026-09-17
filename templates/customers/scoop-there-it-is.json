@@ -1,0 +1,17 @@
+{
+  "id": "scoop-there-it-is",
+  "name": "Scoop there it is",
+  "extends": "../master.json",
+  "description": "Customer override for Scoop there it is — logo, palette, and contact only (extends master).",
+  "variables": {
+    "brandName": "Scoop there it is",
+    "logoUri": "/images/logo-scoop.png",
+    "primaryColor": "#EB11D5",
+    "secondaryColor": "#85EAD1",
+    "contactName": "Scoop there it is",
+    "contactPhone": "+1 (312) 555-0198",
+    "contactEmail": "hi@scoopthere.example",
+    "contactAddress": "88 Scoop Lane, Chicago, IL",
+    "legalDisclaimer": "© Scoop there it is. All rights reserved."
+  }
+}

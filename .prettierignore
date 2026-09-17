@@ -1,0 +1,9 @@
+dist/
+build/
+node_modules/
+output/
+.agents/
+*.min.js
+coverage/
+templates/master.json
+package-lock.json

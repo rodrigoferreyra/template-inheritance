@@ -1,0 +1,17 @@
+{
+  "id": "bun-intended",
+  "name": "BUN intended",
+  "extends": "../master.json",
+  "description": "Customer override for BUN intended — logo, palette, and contact only (extends master).",
+  "variables": {
+    "brandName": "BUN intended",
+    "logoUri": "/images/logo-bun.png",
+    "primaryColor": "#2E573E",
+    "secondaryColor": "#E4A341",
+    "contactName": "BUN intended",
+    "contactPhone": "+1 (206) 555-0174",
+    "contactEmail": "eat@bunintended.example",
+    "contactAddress": "412 Bun Blvd, Seattle, WA",
+    "legalDisclaimer": "© BUN intended. All rights reserved."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "skills": {
+    "build": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/build/SKILL.md",
+      "computedHash": "222c3bbb386e4261cf3c320561794bc8ed8660db2cc385866507ecc83c126ebf"
+    },
+    "docs-angular": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-angular/SKILL.md",
+      "computedHash": "666e483b0be03890d5da47d9da53811e6d985cc8151397ef670b55ead02e8b7d"
+    },
+    "docs-electron": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-electron/SKILL.md",
+      "computedHash": "a104b5709e662d7e7ebe250b9826d2972424da93dc2a61b1d14002818f3651f3"
+    },
+    "docs-js": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-js/SKILL.md",
+      "computedHash": "9f981ebbae5cd3f4f2305614e8b9da273dc68a9b9cef5e91d2c9b5bff651607e"
+    },
+    "docs-nextjs": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-nextjs/SKILL.md",
+      "computedHash": "ae3335aebc8bc32798e96222b58aba872291565f55d6100f2f28d8f5ab75ce21"
+    },
+    "docs-node": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-node/SKILL.md",
+      "computedHash": "32041b9d67687e0c7f83eb73dc19ac2d700e6e7dd7a56b8c97ae905f22214c11"
+    },
+    "docs-nuxtjs": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-nuxtjs/SKILL.md",
+      "computedHash": "d67ea2d00f824d7cf45a74e900e94167918f706f182ecd9993c4202007c1dad0"
+    },
+    "docs-react": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-react/SKILL.md",
+      "computedHash": "4773b3786e72ba95eb105c3bb1309f4d23ff2c7f92cb3da23455811ba412d73e"
+    },
+    "docs-svelte": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-svelte/SKILL.md",
+      "computedHash": "aaa85d3b28b94a4507dc7005c9f1f74428041ce6210581c9a463e090e19aa3f4"
+    },
+    "docs-sveltekit": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-sveltekit/SKILL.md",
+      "computedHash": "263be0d809042a23cfa7745af0c7e4cc45101c9f0cd22e31cdca269f0cfe00d4"
+    },
+    "docs-vue": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/docs-vue/SKILL.md",
+      "computedHash": "8725430c497fc4def8b956826d2f759fa512921c713c1fda996b21c5e3651958"
+    },
+    "explain": {
+      "source": "imgly/agent-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/cesdk/skills/explain/SKILL.md",
+      "computedHash": "996a5ce2d567616d70c30920230e5cb5de4414b477add77ce26188fff845ec07"
+    }
+  }
+}
