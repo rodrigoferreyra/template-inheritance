@@ -1,34 +1,31 @@
 /**
- * Customer brand overrides for a master template.
+ * Browser-side customer discovery.
  *
- * Each file sets `extends` to a path under templates/ (relative to this folder,
- * e.g. `../master.json`). `resolveScene` loads that master, then applies
- * logoUri, palette colors, and contact via text variables.
- *
- * Default HeroImage campaign art lives in catalog/brand-campaign.json (Cover
- * fill on a wide frame), so customer files stay logo / palette / contact / legal only.
+ * Every `templates/customers/*.json` file is picked up at build time by
+ * `import.meta.glob` — dropping in a new brand file is enough, there is no
+ * import list to maintain. Node does the equivalent with `fs.readdir` in
+ * scripts/lib/customers-node.ts.
  */
 
-import beanThere from "../../templates/customers/bean-there-bean-good.json";
-import scoopThere from "../../templates/customers/scoop-there-it-is.json";
-import bunIntended from "../../templates/customers/bun-intended.json";
+import {
+  assertValidCustomer,
+  listCustomers,
+  setCustomers,
+  type CustomerOverride,
+} from "../customer-registry";
 
-export interface CustomerOverride {
-  id: string;
-  name: string;
-  extends: string;
-  description?: string;
-  variables: Record<string, string>;
-}
+const modules = import.meta.glob<{ default: unknown }>(
+  "../../templates/customers/*.json",
+  { eager: true },
+);
 
-export const CUSTOMERS: CustomerOverride[] = [
-  beanThere,
-  scoopThere,
-  bunIntended,
-] as CustomerOverride[];
+setCustomers(
+  Object.entries(modules).map(([file, mod]) =>
+    assertValidCustomer(mod.default, file),
+  ),
+);
 
-export const CUSTOMERS_BY_ID: Record<string, CustomerOverride> =
-  Object.fromEntries(CUSTOMERS.map((customer) => [customer.id, customer]));
+export const CUSTOMERS: CustomerOverride[] = listCustomers();
 
 /** UI card art for the customer picker (not part of the CE.SDK scene). */
 export const CUSTOMER_CARD_PATHS: Record<string, string> = {
@@ -37,11 +34,4 @@ export const CUSTOMER_CARD_PATHS: Record<string, string> = {
   "bun-intended": "/images/card-bun.png",
 };
 
-/**
- * Match a brand name to its customer override.
- */
-export function findCustomerByName(name: string): CustomerOverride | undefined {
-  return CUSTOMERS.find(
-    (customer) => customer.name.toLowerCase() === name.toLowerCase(),
-  );
-}
+export type { CustomerOverride };

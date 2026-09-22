@@ -2,13 +2,18 @@
  * Headless catalog render CLI.
  *
  *   npm run render:catalog -- --customer bean-there-bean-good
- *   npm run render:catalog -- --customer bean-there-bean-good --allow-evaluation-mode
+ *   npm run render:catalog -- --customer bean-there-bean-good --dpi 300
  */
+
+import path from "node:path";
 
 import {
   runCatalogRender,
+  REPO_ROOT,
   type CatalogRenderOptions,
 } from "./lib/render-catalog-core";
+import { loadCustomersFromDisk } from "./lib/customers-node";
+import { DEFAULT_DPI } from "../src/resolve";
 
 function parseArgs(argv: string[]) {
   const args: Record<string, string | boolean> = {};
@@ -27,6 +32,12 @@ function parseArgs(argv: string[]) {
   return args;
 }
 
+function knownCustomers(): string {
+  return loadCustomersFromDisk(REPO_ROOT)
+    .map((customer) => customer.id)
+    .join(" | ");
+}
+
 function usage(message?: string): never {
   if (message) console.error(message);
   console.error(`
@@ -38,10 +49,11 @@ Options:
   --color <id>                Product color id for mockup {{color}} tokens
   --limit <n>                 Only the first n products
   --areas all|first           Print areas to render (default: all)
+  --dpi <n>                   Print resolution for print.png (default: ${DEFAULT_DPI})
   --allow-evaluation-mode     If licensed init fails (or no license), retry without a license.
                               Without this flag, licensed init failure throws immediately.
 
-Customers: bean-there-bean-good | scoop-there-it-is | bun-intended
+Customers (${path.join("templates", "customers")}/*.json): ${knownCustomers()}
 `);
   process.exit(1);
 }
@@ -52,8 +64,14 @@ async function main(): Promise<void> {
     typeof args.customer === "string" ? args.customer : undefined;
   if (!customerId) usage("Missing required --customer <id>");
 
+  const dpi =
+    typeof args.dpi === "string" ? Number.parseInt(args.dpi, 10) : undefined;
+  if (dpi != null && (!Number.isFinite(dpi) || dpi <= 0)) {
+    usage(`--dpi must be a positive number, got "${args.dpi}"`);
+  }
+
   const options: CatalogRenderOptions = {
-    customerId,
+    customer: customerId,
     outDir: typeof args.out === "string" ? args.out : undefined,
     colorId: typeof args.color === "string" ? args.color : undefined,
     limit:
@@ -64,6 +82,7 @@ async function main(): Promise<void> {
       typeof args.areas === "string" && args.areas === "first"
         ? "first"
         : "all",
+    dpi,
     allowEvaluationMode: args["allow-evaluation-mode"] === true,
     onProgress: (message) => {
       if (message.endsWith("…")) {
@@ -77,19 +96,16 @@ async function main(): Promise<void> {
   const manifest = await runCatalogRender(options);
 
   console.log(
-    `\nDone: ${manifest.ok} ok, ${manifest.failed} failed (${manifest.elapsedMs}ms)`,
+    `\nDone: ${manifest.ok} ok, ${manifest.failed} failed (${manifest.elapsedMs}ms, ${manifest.dpi} DPI)`,
   );
   console.log(`Manifest: ${manifest.outDir}/manifest.json`);
   if (manifest.warning) {
     console.warn(`Warning: ${manifest.warning}`);
   }
-  if (manifest.evaluationMode) {
-    console.log("evaluationMode: true");
-  } else {
-    console.log("evaluationMode: false");
-  }
+  console.log(`evaluationMode: ${manifest.evaluationMode === true}`);
 
-  if (manifest.failed > 0 || manifest.evaluationMode) process.exitCode = 1;
+  // A watermarked run is still a successful run — only failures are errors.
+  if (manifest.failed > 0) process.exitCode = 1;
 }
 
 main().catch((err) => {

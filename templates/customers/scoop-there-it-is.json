@@ -2,7 +2,12 @@
   "id": "scoop-there-it-is",
   "name": "Scoop there it is",
   "extends": "../master.json",
-  "description": "Customer override for Scoop there it is — logo, palette, and contact only (extends master).",
+  "description": "Customer override for Scoop there it is — brand only: printed artwork, logo, palette, contact, legal. Extends the master; never sets campaign copy or compliance.",
+  "artwork": {
+    "uri": "/images/minimalist-scoop.png",
+    "width": 1280,
+    "height": 720
+  },
   "variables": {
     "brandName": "Scoop there it is",
     "logoUri": "/images/logo-scoop.png",

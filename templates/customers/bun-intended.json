@@ -2,7 +2,12 @@
   "id": "bun-intended",
   "name": "BUN intended",
   "extends": "../master.json",
-  "description": "Customer override for BUN intended — logo, palette, and contact only (extends master).",
+  "description": "Customer override for BUN intended — brand only: printed artwork, logo, palette, contact, legal. Extends the master; never sets campaign copy or compliance.",
+  "artwork": {
+    "uri": "/images/minimalist-bun.png",
+    "width": 1280,
+    "height": 720
+  },
   "variables": {
     "brandName": "BUN intended",
     "logoUri": "/images/logo-bun.png",

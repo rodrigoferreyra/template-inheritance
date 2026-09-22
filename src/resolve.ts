@@ -1,33 +1,41 @@
 /**
- * Resolve a renderable CE.SDK scene by merging, in precedence order:
+ * Resolve a renderable CE.SDK scene by merging three layers, in precedence order:
  *
- *   1. Master template named by customer `extends` (e.g. ../master.json)
- *   2. templates/customers/*.json     — customer text-variable overrides
- *   3. catalog/products.json           — product copy, artworkLocation, optional hero
- *      (+ catalog/brand-campaign.json for default HeroImage campaign art per customer)
+ *   1. templates/master.json          — locked layout, brand chrome, compliance footer
+ *   2. templates/customers/*.json     — the brand: printed artwork, logo, palette, contact, legal
+ *   3. catalog/products.json          — campaign copy plus the print geometry of one SKU
  *
- * Later layers win for their own concerns:
- * - Customer wins brand variables / logo / palette / contact
- * - Product wins optional heroImage, campaign copy (headline/body/cta), page size &
- *   mockup framing (does not overwrite customer brand variables)
- * - HeroImage is required: product.heroImage or catalog/brand-campaign.json by customer id
- *   (Cover-cropped campaign art for prints/mockups)
- * - Master-only `masterCompliance` / MasterCompliance is re-applied after
- *   customer overlay and is never read from customer JSON
- * - `includeMockup: false` (print.png) hides all brand/marketing chrome so the
- *   export is a HeroImage-only production plate sized to artworkLocation;
- *   `includeMockup: true` (mockup.png) keeps BrandLogo + campaign copy + contact
- *   for the catalog preview composited on the product photo
+ * Each layer owns a different thing, and the ownership is enforced, not just
+ * documented:
+ * - The customer supplies the artwork that gets printed. Change it once and
+ *   every product for that customer changes. Products cannot supply artwork.
+ * - The product supplies `pageSize` (physical print size), `artworkLocation`
+ *   (where that print sits on the mockup photo) and campaign copy.
+ * - Master-only compliance is re-applied after the customer overlay, so a stray
+ *   customer key cannot win.
+ *
+ * Two outputs come from the same resolved scene:
+ * - `mode: "print"`  → the customer artwork alone, at `pageSize × dpi` pixels.
+ * - `mode: "mockup"` → the product photo with that artwork applied, and the
+ *   brand chrome in a caption band *beneath* the photo — never printed on it.
  */
 
 import type CreativeEngine from "@cesdk/engine";
 
 import masterTemplate from "../templates/master.json";
 import productsCatalog from "../catalog/products.json";
-import brandCampaign from "../catalog/brand-campaign.json";
-import { CUSTOMERS_BY_ID, type CustomerOverride } from "./app/customer-catalog";
+import {
+  requireCustomer,
+  resolveCustomerArtwork,
+  type CustomerOverride,
+} from "./customer-registry";
 import { applyCustomerOverride } from "./customer-override";
-import { assertHasProperty, replaceImageByName } from "./imgly/utils";
+import { assertHasProperty } from "./imgly/utils";
+import {
+  applyDocumentTypeface,
+  DEFAULT_TYPEFACE,
+  type TypefaceSpec,
+} from "./imgly/typeface";
 
 // ─── Master registry (customer.extends → template document) ───────────────────
 
@@ -36,9 +44,10 @@ interface MasterTemplateDoc {
   sceneString?: string;
   masterOnly?: { complianceText?: string };
   overrideVariables?: string[];
+  typeface?: TypefaceSpec;
   exportModes?: {
     print?: { visibleBlocks?: string[]; hiddenBlocks?: string[] };
-    marketing?: { visibleBlocks?: string[]; hiddenBlocks?: string[] };
+    marketing?: { artworkBlocks?: string[]; captionBlocks?: string[] };
   };
 }
 
@@ -48,7 +57,6 @@ interface MasterTemplateDoc {
  */
 const MASTER_TEMPLATES_BY_EXTENDS: Record<string, MasterTemplateDoc> = {
   "../master.json": masterTemplate as MasterTemplateDoc,
-  // Aliases for convenience / alternate spellings
   "master.json": masterTemplate as MasterTemplateDoc,
   "../templates/master.json": masterTemplate as MasterTemplateDoc,
 };
@@ -80,6 +88,7 @@ export function resolveMasterTemplate(
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
+/** Where the print sits on the mockup photo, in that photo's pixels. */
 export interface ArtworkLocation {
   x: number;
   y: number;
@@ -92,6 +101,7 @@ export interface ArtworkLocation {
 export interface ProductArea {
   id: string;
   label: string;
+  /** Physical print size, in the product's `designUnit`. Drives the print plate. */
   pageSize: { width: number; height: number };
   artworkLocation: ArtworkLocation;
   mockup?: {
@@ -106,21 +116,14 @@ export interface ProductColor {
   isDefault?: boolean;
 }
 
-export interface ImageSource {
-  uri: string;
-  width: number;
-  height: number;
-}
-
 export interface Product {
   id: string;
   name: string;
   category: string;
   sku: string;
+  /** Unit of `areas[].pageSize`. Only `Inch` is supported today. */
   designUnit: string;
   unitPrice?: number;
-  /** Product-layer image for the master `HeroImage` placeholder (setSourceSet dims) */
-  heroImage?: string | ImageSource;
   /** Product-layer campaign copy (master `{{headline}}` / `{{body}}` / `{{cta}}`) */
   headline?: string;
   body?: string;
@@ -130,8 +133,13 @@ export interface Product {
   areas: ProductArea[];
 }
 
+export type ResolveMode = "print" | "mockup";
+
+/** Default print resolution. Raise to 300 for production plates. */
+export const DEFAULT_DPI = 150;
+
 export interface ResolveOptions {
-  /** Customer override id (e.g. `bean-there-bean-good`) or full object */
+  /** Customer override id, or a full object (e.g. one built from an upload). */
   customer: string | CustomerOverride;
   /** Product id (e.g. `tshirt-01`) or full object */
   product: string | Product;
@@ -141,8 +149,10 @@ export interface ResolveOptions {
   colorId?: string;
   /** Turn relative `/…` asset paths into absolute URLs (required for CE.SDK fills) */
   resolveAssetPath?: (path: string) => string;
-  /** When false, print artwork only (hide marketing blocks; resize page to artworkLocation). When true, keep marketing chrome and add mockup backdrop. */
-  includeMockup?: boolean;
+  /** `print` builds the production plate; `mockup` builds the catalog card. */
+  mode?: ResolveMode;
+  /** Print resolution in DPI (print mode only). Defaults to {@link DEFAULT_DPI}. */
+  dpi?: number;
 }
 
 export interface ResolvedScene {
@@ -152,6 +162,11 @@ export interface ResolvedScene {
   area: ProductArea;
   color: ProductColor;
   artworkLocation: ArtworkLocation;
+  mode: ResolveMode;
+  /** Exported pixel size of the page for this mode. */
+  pixelSize: { width: number; height: number };
+  /** DPI the print plate was built at (print mode only). */
+  dpi?: number;
 }
 
 // ─── Catalog helpers ──────────────────────────────────────────────────────────
@@ -167,73 +182,62 @@ export function getProductById(id: string): Product | undefined {
   return PRODUCTS.find((product) => product.id === id);
 }
 
-/** Campaign art map: customer id → public asset path for default HeroImage. */
-export function getBrandCampaignImage(customerId: string): string | undefined {
-  return (brandCampaign as { byCustomerId?: Record<string, string> })
-    .byCustomerId?.[customerId];
-}
-
-function normalizeHeroSource(
-  hero: string | ImageSource | undefined,
-  fallbackUri?: string,
-): ImageSource | undefined {
-  if (hero && typeof hero === "object") {
-    return hero;
-  }
-  const uri = (typeof hero === "string" && hero) || fallbackUri;
-  if (!uri) return undefined;
-  // Campaign / string-only fallbacks: landscape campaign art is 1280×720.
-  return { uri, width: 1280, height: 720 };
-}
+/** Brand art on a product would break per-customer inheritance — refuse it. */
+const BRAND_FIELDS_FORBIDDEN_ON_PRODUCTS = [
+  "heroImage",
+  "logoUri",
+  "artwork",
+  "primaryColor",
+  "secondaryColor",
+] as const;
 
 /**
- * Resolve HeroImage source for a product (product.heroImage wins over brand-campaign).
+ * Fail fast if the product catalog carries brand artwork. Without this the
+ * catalog silently renders one customer's art into another customer's output.
  */
-export function resolveHeroImageSource(
-  customerId: string,
-  product: Product,
-): ImageSource | undefined {
-  return normalizeHeroSource(
-    product.heroImage,
-    getBrandCampaignImage(customerId),
-  );
-}
-
-/** @deprecated prefer resolveHeroImageSource — kept for preflight path strings */
-export function resolveHeroImageUri(
-  customerId: string,
-  product: Product,
-): string | undefined {
-  return resolveHeroImageSource(customerId, product)?.uri;
-}
-
-/**
- * Fail fast before engine init if any selected product lacks HeroImage coverage.
- */
-export function assertHeroCoverageForCustomer(
-  customerId: string,
-  products: Product[],
+export function assertProductsCarryNoBrandArt(
+  products: Product[] = PRODUCTS,
 ): void {
-  const missing = products.filter(
-    (product) => !resolveHeroImageSource(customerId, product),
-  );
-  if (missing.length === 0) return;
-  const ids = missing.map((p) => p.id).join(", ");
-  throw new Error(
-    `No HeroImage for customer "${customerId}" on product(s): ${ids}. ` +
-      `Add catalog/brand-campaign.json byCustomerId["${customerId}"] or set product.heroImage.`,
-  );
+  const offenders: string[] = [];
+  for (const product of products) {
+    for (const field of BRAND_FIELDS_FORBIDDEN_ON_PRODUCTS) {
+      if (field in (product as unknown as Record<string, unknown>)) {
+        offenders.push(`${product.id}.${field}`);
+      }
+    }
+  }
+  if (offenders.length > 0) {
+    throw new Error(
+      `Brand fields found on the product layer: ${offenders.join(", ")}. ` +
+        `Artwork and palette belong to templates/customers/*.json.`,
+    );
+  }
 }
 
-function resolveCustomer(
+/** Physical print size → exported pixel size at the requested DPI. */
+export function printPixelSize(
+  product: Product,
+  area: ProductArea,
+  dpi: number = DEFAULT_DPI,
+): { width: number; height: number } {
+  if (product.designUnit !== "Inch") {
+    throw new Error(
+      `Product "${product.id}" uses unsupported designUnit "${product.designUnit}" (expected "Inch")`,
+    );
+  }
+  if (!(dpi > 0)) {
+    throw new Error(`DPI must be positive, got ${dpi}`);
+  }
+  return {
+    width: Math.round(area.pageSize.width * dpi),
+    height: Math.round(area.pageSize.height * dpi),
+  };
+}
+
+function resolveCustomerArg(
   customer: string | CustomerOverride,
 ): CustomerOverride {
-  if (typeof customer !== "string") return customer;
-  const found = CUSTOMERS_BY_ID[customer];
-  if (!found) {
-    throw new Error(`Unknown customer override: ${customer}`);
-  }
-  return found;
+  return typeof customer === "string" ? requireCustomer(customer) : customer;
 }
 
 function resolveProduct(product: string | Product): Product {
@@ -287,196 +291,371 @@ function applyMockupVariables(
   return resolved;
 }
 
-/**
- * Blocks that must never appear on production print artwork.
- * Kept visible for mockup previews (`includeMockup: true`); hidden for print
- * exports (`includeMockup: false`). Print plate is HeroImage only — BrandLogo
- * is brand chrome for mockups, not ink on the garment.
- * Sourced from master.exportModes when present so scene metadata drives visibility.
- */
-const DEFAULT_PRINT_HIDDEN_BLOCKS = [
+// ─── Scene helpers ────────────────────────────────────────────────────────────
+
+/** Every named block the master contributes to the marketing composition. */
+const DEFAULT_CAPTION_BLOCKS = [
   "BrandLogo",
+  "BrandName",
+  "BrandPrimarySwatch",
+  "BrandSecondarySwatch",
+  "BrandPaletteLabel",
   "Headline",
   "Body",
   "CTA",
   "ContactBlock",
   "LegalLine",
   "MasterCompliance",
-  "BrandName",
-  "BrandPaletteLabel",
-  "BrandPrimarySwatch",
-  "BrandSecondarySwatch",
 ] as const;
 
-function printHiddenBlocks(master: MasterTemplateDoc): readonly string[] {
-  return master.exportModes?.print?.hiddenBlocks ?? DEFAULT_PRINT_HIDDEN_BLOCKS;
+function captionBlockNames(master: MasterTemplateDoc): readonly string[] {
+  return master.exportModes?.marketing?.captionBlocks ?? DEFAULT_CAPTION_BLOCKS;
 }
 
-function setBlocksVisibleByName(
-  engine: CreativeEngine,
-  names: readonly string[],
-  visible: boolean,
-  options: { required?: boolean } = {},
-): void {
-  const required = options.required ?? false;
-  const missing: string[] = [];
-  for (const name of names) {
-    const [block] = engine.block.findByName(name);
-    if (block == null) {
-      if (required) missing.push(name);
-      continue;
-    }
-    engine.block.setVisible(block, visible);
-  }
-  if (missing.length > 0) {
+function requireBlock(engine: CreativeEngine, name: string): number {
+  const [block] = engine.block.findByName(name);
+  if (block == null) {
     throw new Error(
-      `Print layout expected marketing blocks that are missing from the master scene: ${missing.join(", ")}`,
+      `Master scene is missing required block "${name}" — run \`npm run build:master\``,
     );
   }
+  return block;
+}
+
+function requirePage(engine: CreativeEngine): number {
+  const page = engine.block.findByType("page")[0];
+  if (page == null) {
+    throw new Error("Resolved scene has no page");
+  }
+  return page;
+}
+
+function setTransparentFill(engine: CreativeEngine, block: number): void {
+  if (!engine.block.supportsFill(block)) return;
+  const fill = engine.block.getFill(block);
+  if (engine.block.getType(fill) !== "//ly.img.ubq/fill/color") return;
+  assertHasProperty(engine, fill, "fill/color/value");
+  engine.block.setColor(fill, "fill/color/value", { r: 0, g: 0, b: 0, a: 0 });
+}
+
+function setWhiteFill(engine: CreativeEngine, block: number): void {
+  if (!engine.block.supportsFill(block)) return;
+  const fill = engine.block.getFill(block);
+  if (engine.block.getType(fill) !== "//ly.img.ubq/fill/color") return;
+  assertHasProperty(engine, fill, "fill/color/value");
+  engine.block.setColor(fill, "fill/color/value", { r: 1, g: 1, b: 1, a: 1 });
 }
 
 /**
- * Production print plate: hide all brand/marketing chrome, then size the page
- * and HeroImage to the product artworkLocation so print.png is artwork-only.
+ * Production print plate: the customer artwork alone, sized to the product's
+ * physical print area at the requested DPI.
+ *
+ * Nothing else survives — no logo, no copy, no contact block, no compliance
+ * footer. Brand chrome belongs on the mockup, not on the ink plate.
  */
-function applyPrintArtworkOnlyLayout(
+function applyPrintLayout(
   engine: CreativeEngine,
   master: MasterTemplateDoc,
-  art: ArtworkLocation,
+  size: { width: number; height: number },
+  dpi: number,
 ): void {
-  setBlocksVisibleByName(engine, printHiddenBlocks(master), false, {
-    required: true,
-  });
-
-  const [hero] = engine.block.findByName("HeroImage");
-  if (hero == null) {
-    throw new Error(
-      "Print layout requires HeroImage — regenerate templates/master.json",
-    );
+  for (const name of captionBlockNames(master)) {
+    const [block] = engine.block.findByName(name);
+    if (block != null) engine.block.setVisible(block, false);
   }
 
-  const page = engine.block.findByType("page")[0];
-  if (page == null) {
-    throw new Error("Print layout expected a page");
-  }
+  const hero = requireBlock(engine, "HeroImage");
+  const page = requirePage(engine);
 
-  // Tight plate: page === artwork rect; hero fills it edge-to-edge
-  engine.block.setWidth(page, art.width);
-  engine.block.setHeight(page, art.height);
+  engine.block.setWidth(page, size.width);
+  engine.block.setHeight(page, size.height);
   engine.block.setPositionX(hero, 0);
   engine.block.setPositionY(hero, 0);
-  engine.block.setWidth(hero, art.width);
-  engine.block.setHeight(hero, art.height);
+  engine.block.setWidth(hero, size.width);
+  engine.block.setHeight(hero, size.height);
   engine.block.resetCrop(hero);
   if (engine.block.supportsContentFillMode(hero)) {
     engine.block.setContentFillMode(hero, "Cover");
   }
 
-  // Transparent page so the plate is the image, not cream poster margins
-  if (engine.block.supportsFill(page)) {
-    const fill = engine.block.getFill(page);
-    if (engine.block.getType(fill) === "//ly.img.ubq/fill/color") {
-      assertHasProperty(engine, fill, "fill/color/value");
-      engine.block.setColor(fill, "fill/color/value", {
-        r: 0,
-        g: 0,
-        b: 0,
-        a: 0,
-      });
+  // Transparent plate: the export is the artwork, not the master's paper colour.
+  setTransparentFill(engine, page);
+
+  // Record the physical resolution on the scene so exported files carry it.
+  const scene = engine.scene.get();
+  if (scene != null) {
+    const props = engine.block.findAllProperties(scene);
+    if (props.includes("scene/dpi")) {
+      engine.block.setFloat(scene, "scene/dpi", dpi);
     }
   }
 }
 
-/**
- * Full master is a ~1080×1350 brand page. Skinny / small artwork rects (caps,
- * mug wraps, tumblers) still show logo + hero + headline + master compliance on
- * mockups, but hide secondary chrome that only reads well on larger rects.
- *
- * Note: print exports (`includeMockup: false`) rebuild a HeroImage-only plate
- * via `applyPrintArtworkOnlyLayout` and never include BrandLogo or copy.
- */
-function applyCompactPrintLayoutIfNeeded(
-  engine: CreativeEngine,
-  art: ArtworkLocation,
-): void {
-  const aspect = art.width / Math.max(art.height, 1);
-  // Tumbler wraps (~320×520) and other skinny rects — not square tee prints (~360×360)
-  const isCompact = art.width <= 320 || aspect < 0.7;
-  if (!isCompact) return;
+interface TextMeasurement {
+  width: number;
+  fontSize: number;
+  align?: "Left" | "Center" | "Right";
+}
 
-  // Soft hide: optional chrome for skinny mockup rects.
-  setBlocksVisibleByName(
-    engine,
-    [
-      "BrandPaletteLabel",
-      "BrandPrimarySwatch",
-      "BrandSecondarySwatch",
-      "ContactBlock",
-      "Body",
-      "CTA",
-    ],
-    false,
-    { required: false },
+/**
+ * Position a named text block and report the height it takes at that width.
+ * Returns 0 when the block is absent so callers can keep stacking.
+ */
+/**
+ * Size a named text block and report the height it needs at that width, without
+ * committing to a position yet. Returns 0 when the block is absent.
+ */
+function measureText(
+  engine: CreativeEngine,
+  name: string,
+  placement: TextMeasurement,
+): number {
+  const [block] = engine.block.findByName(name);
+  if (block == null) return 0;
+  engine.block.setWidth(block, placement.width);
+  if (engine.block.findAllProperties(block).includes("text/fontSize")) {
+    engine.block.setFloat(block, "text/fontSize", placement.fontSize);
+  }
+  engine.block.setHeightMode(block, "Auto");
+  engine.block.setEnum(
+    block,
+    "text/horizontalAlignment",
+    placement.align ?? "Left",
   );
+  return engine.block.getHeight(block);
+}
 
-  // Bump remaining text so compact mockups stay legible (caps, mug wraps).
-  const textBoosts: Array<{ name: string; fontSize: number }> = [
-    { name: "BrandName", fontSize: 28 },
-    { name: "Headline", fontSize: 36 },
-    { name: "MasterCompliance", fontSize: 16 },
-    { name: "LegalLine", fontSize: 16 },
-  ];
-  for (const { name, fontSize } of textBoosts) {
-    const [block] = engine.block.findByName(name);
-    if (block == null) continue;
-    if (!engine.block.findAllProperties(block).includes("text/fontSize")) {
-      continue;
-    }
-    engine.block.setFloat(block, "text/fontSize", fontSize);
-  }
+/** Move an already-measured block into place. */
+function positionAt(
+  engine: CreativeEngine,
+  name: string,
+  x: number,
+  y: number,
+): void {
+  const [block] = engine.block.findByName(name);
+  if (block == null) return;
+  engine.block.setPositionX(block, x);
+  engine.block.setPositionY(block, y);
+}
+
+function placeRect(
+  engine: CreativeEngine,
+  name: string,
+  rect: { x: number; y: number; width: number; height: number },
+): void {
+  const [block] = engine.block.findByName(name);
+  if (block == null) return;
+  engine.block.setPositionX(block, rect.x);
+  engine.block.setPositionY(block, rect.y);
+  engine.block.setWidth(block, rect.width);
+  engine.block.setHeight(block, rect.height);
+  engine.block.resetCrop(block);
 }
 
 /**
- * Apply product-layer fields: hero image, campaign copy, artworkLocation, and
- * optional mockup framing (same layout math as ProductBackdrop / printableAreaPx).
+ * Catalog mockup: the product photo with the customer's artwork applied inside
+ * the product's print area, and the brand chrome laid out in a caption band
+ * underneath the photo.
  *
- * Hero image precedence:
- *   1. product.heroImage (setSourceSet {uri,width,height} or string URI)
- *   2. catalog/brand-campaign.json entry for this customer (campaign art default)
- *
- * Product layer MUST NOT touch logo / palette / contact / legal / masterCompliance.
+ * The split matters. Earlier versions shrank the whole brand sheet — contact
+ * block, legal line and compliance footer included — into the print rect, which
+ * rendered a phone number onto the garment. Only the artwork goes on the
+ * product; everything else is catalog furniture around it.
  */
-function applyProductLayer(
+function applyMockupComposition(
   engine: CreativeEngine,
-  product: Product,
   area: ProductArea,
   color: ProductColor,
   options: {
     resolveAssetPath: (path: string) => string;
-    includeMockup: boolean;
-    brandCampaignImage?: string;
-    master: MasterTemplateDoc;
   },
-): void {
-  const hero = normalizeHeroSource(
-    product.heroImage,
-    options.brandCampaignImage,
-  );
-  if (!hero) {
-    throw new Error(
-      `No HeroImage for product "${product.id}": set product.heroImage or catalog/brand-campaign.json byCustomerId entry`,
-    );
+): { width: number; height: number } {
+  const photo = area.mockup?.images?.[0];
+  if (!photo) {
+    throw new Error(`Area "${area.id}" has no mockup image to compose onto`);
   }
-  replaceImageByName(
-    engine,
-    "HeroImage",
-    {
-      uri: options.resolveAssetPath(hero.uri),
-      width: hero.width,
-      height: hero.height,
-    },
-    { required: true },
+
+  const page = requirePage(engine);
+  const art = area.artworkLocation;
+
+  // The canvas is the product photo plus a caption band, in photo pixels.
+  const width = photo.width;
+  const pad = Math.round(width * 0.055);
+  const gap = Math.round(width * 0.032);
+  const logoSize = Math.round(width * 0.11);
+  const swatch = Math.round(width * 0.05);
+  const inner = width - pad * 2;
+
+  // Measure every caption row first so the band is exactly as tall as it needs
+  // to be — a fixed ratio either clipped the footer or left a gap.
+  const paletteHeight = measureText(engine, "BrandPaletteLabel", {
+    width: width * 0.4,
+    fontSize: Math.round(width * 0.021),
+    align: "Right",
+  });
+  const brandNameHeight = measureText(engine, "BrandName", {
+    width: inner - logoSize - gap - swatch * 2 - gap,
+    fontSize: Math.round(width * 0.034),
+  });
+  const headlineHeight = measureText(engine, "Headline", {
+    width: inner,
+    fontSize: Math.round(width * 0.046),
+  });
+  const bodyHeight = measureText(engine, "Body", {
+    width: inner,
+    fontSize: Math.round(width * 0.026),
+  });
+  const ctaHeight = measureText(engine, "CTA", {
+    width: width * 0.42,
+    fontSize: Math.round(width * 0.03),
+  });
+  const contactHeight = measureText(engine, "ContactBlock", {
+    width: width * 0.5 - pad,
+    fontSize: Math.round(width * 0.022),
+    align: "Right",
+  });
+  const footerFont = Math.round(width * 0.02);
+  const legalHeight = measureText(engine, "LegalLine", {
+    width: inner,
+    fontSize: footerFont,
+  });
+  const complianceHeight = measureText(engine, "MasterCompliance", {
+    width: inner,
+    fontSize: footerFont,
+  });
+
+  const headerHeight = Math.max(
+    logoSize,
+    swatch + Math.round(width * 0.012) + paletteHeight,
   );
+  const detailsHeight = Math.max(ctaHeight, contactHeight);
+  const captionHeight =
+    pad +
+    headerHeight +
+    gap +
+    headlineHeight +
+    Math.round(gap * 0.6) +
+    bodyHeight +
+    gap +
+    detailsHeight +
+    gap +
+    legalHeight +
+    Math.round(footerFont * 0.4) +
+    complianceHeight +
+    pad;
+
+  const height = photo.height + captionHeight;
+
+  engine.block.setName(page, `Mockup-${area.id}`);
+  engine.block.setWidth(page, width);
+  engine.block.setHeight(page, height);
+  engine.block.setPositionX(page, 0);
+  engine.block.setPositionY(page, 0);
+  engine.block.setClipped(page, true);
+  setWhiteFill(engine, page);
+
+  // Artwork sits exactly in the product's print area — and nothing else does.
+  const hero = requireBlock(engine, "HeroImage");
+  placeRect(engine, "HeroImage", {
+    x: art.x,
+    y: art.y,
+    width: art.width,
+    height: art.height,
+  });
+  if (engine.block.supportsContentFillMode(hero)) {
+    engine.block.setContentFillMode(hero, "Cover");
+  }
+
+  // Product photo behind everything.
+  const backdrop = engine.block.create("graphic");
+  engine.block.setName(backdrop, `ProductPhoto-${area.id}`);
+  engine.block.setShape(backdrop, engine.block.createShape("rect"));
+  const fill = engine.block.createFill("image");
+  assertHasProperty(engine, fill, "fill/image/sourceSet");
+  engine.block.setSourceSet(fill, "fill/image/sourceSet", [
+    {
+      uri: options.resolveAssetPath(
+        applyMockupVariables(photo.uri, { color: color.id }),
+      ),
+      width: photo.width,
+      height: photo.height,
+    },
+  ]);
+  engine.block.setFill(backdrop, fill);
+  engine.block.appendChild(page, backdrop);
+  engine.block.setPositionX(backdrop, 0);
+  engine.block.setPositionY(backdrop, 0);
+  engine.block.setWidth(backdrop, photo.width);
+  engine.block.setHeight(backdrop, photo.height);
+  if (engine.block.supportsContentFillMode(backdrop)) {
+    engine.block.setContentFillMode(backdrop, "Cover");
+  }
+  engine.block.sendToBack(backdrop);
+
+  // ── Caption band ──────────────────────────────────────────────────────────
+  let y = photo.height + pad;
+
+  placeRect(engine, "BrandLogo", {
+    x: pad,
+    y,
+    width: logoSize,
+    height: logoSize,
+  });
+  positionAt(
+    engine,
+    "BrandName",
+    pad + logoSize + gap,
+    y + Math.round((logoSize - brandNameHeight) / 2),
+  );
+  placeRect(engine, "BrandPrimarySwatch", {
+    x: width - pad - swatch * 2 - Math.round(gap * 0.3),
+    y,
+    width: swatch,
+    height: swatch,
+  });
+  placeRect(engine, "BrandSecondarySwatch", {
+    x: width - pad - swatch,
+    y,
+    width: swatch,
+    height: swatch,
+  });
+  positionAt(
+    engine,
+    "BrandPaletteLabel",
+    width - pad - width * 0.4,
+    y + swatch + Math.round(width * 0.012),
+  );
+
+  y += headerHeight + gap;
+  positionAt(engine, "Headline", pad, y);
+  y += headlineHeight + Math.round(gap * 0.6);
+  positionAt(engine, "Body", pad, y);
+  y += bodyHeight + gap;
+
+  // CTA and contact share a row: campaign call to action left, brand right.
+  positionAt(
+    engine,
+    "CTA",
+    pad,
+    y + Math.round((detailsHeight - ctaHeight) / 2),
+  );
+  positionAt(engine, "ContactBlock", width * 0.5, y);
+  y += detailsHeight + gap;
+
+  positionAt(engine, "LegalLine", pad, y);
+  y += legalHeight + Math.round(footerFont * 0.4);
+  positionAt(engine, "MasterCompliance", pad, y);
+
+  return { width, height };
+}
+
+/**
+ * Apply the product layer: campaign copy only.
+ *
+ * The product layer MUST NOT touch artwork, logo, palette, contact, legal or
+ * compliance — those belong to the customer and master layers.
+ */
+function applyProductLayer(engine: CreativeEngine, product: Product): void {
   if (product.headline) {
     engine.variable.setString("headline", product.headline);
   }
@@ -486,95 +665,14 @@ function applyProductLayer(
   if (product.cta) {
     engine.variable.setString("cta", product.cta);
   }
-
-  const page = engine.block.findByType("page")[0];
-  if (page == null) {
-    throw new Error("Resolved scene has no page");
-  }
-
-  const art = area.artworkLocation;
-
-  // Product layer wins layout: shrink/expand master content to the print rect
-  engine.block.resizeContentAware([page], art.width, art.height);
-  engine.block.setName(page, `Artwork-${area.id}`);
-  engine.block.setClipped(page, true);
-  engine.block.setScopeEnabled(page, "editor/select", false);
-
-  // Skinny / small print areas can't carry the full brand poster — keep logo,
-  // hero, brand/headline, and the master compliance footer; hide secondary UI.
-  // (Mockup path only; print path rebuilds a HeroImage-only plate next.)
-  applyCompactPrintLayoutIfNeeded(engine, art);
-
-  // Print export: HeroImage-only production plate at artworkLocation size.
-  // Mockup export keeps the full composition (plus compact-layout reductions above).
-  if (!options.includeMockup) {
-    applyPrintArtworkOnlyLayout(engine, options.master, art);
-  }
-
-  // Transparent page only when a mockup backdrop will show around the print rect
-  if (options.includeMockup && engine.block.supportsFill(page)) {
-    const fill = engine.block.getFill(page);
-    if (engine.block.getType(fill) === "//ly.img.ubq/fill/color") {
-      assertHasProperty(engine, fill, "fill/color/value");
-      engine.block.setColor(fill, "fill/color/value", {
-        r: 0,
-        g: 0,
-        b: 0,
-        a: 0,
-      });
-    }
-  }
-
-  if (!options.includeMockup) return;
-
-  const image = area.mockup?.images?.[0];
-  if (!image) return;
-
-  const scene = engine.scene.get();
-  if (scene == null) return;
-
-  const uri = options.resolveAssetPath(
-    applyMockupVariables(image.uri, { color: color.id }),
-  );
-
-  const backdrop = engine.block.create("graphic");
-  engine.block.setName(backdrop, `ProductMockup-${area.id}`);
-  engine.block.setShape(backdrop, engine.block.createShape("rect"));
-  const fill = engine.block.createFill("image");
-  engine.block.setFill(backdrop, fill);
-  assertHasProperty(engine, fill, "fill/image/sourceSet");
-  engine.block.setSourceSet(fill, "fill/image/sourceSet", [
-    { uri, width: image.width, height: image.height },
-  ]);
-  // contentFill/mode on the graphic block, not the fill
-  if (engine.block.supportsContentFillMode(backdrop)) {
-    engine.block.setContentFillMode(backdrop, "Cover");
-  }
-
-  const pageWidth = engine.block.getWidth(page);
-  const scale = pageWidth / art.width;
-  engine.block.setWidth(backdrop, image.width * scale);
-  engine.block.setHeight(backdrop, image.height * scale);
-  engine.block.setPositionX(backdrop, -art.x * scale);
-  engine.block.setPositionY(backdrop, -art.y * scale);
-  engine.block.resetCrop(backdrop);
-
-  for (const scope of engine.editor.findAllScopes()) {
-    engine.block.setScopeEnabled(backdrop, scope, false);
-  }
-
-  // Mockup behind the page (scene children: backdrop @0, page on top)
-  engine.block.insertChild(scene, backdrop, 0);
-  engine.block.setPositionX(page, 0);
-  engine.block.setPositionY(page, 0);
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 /**
  * Apply master-only fields that must never come from customer overrides.
- * Written after the master scene loads and re-applied after customer overlay
- * so a stray customer key cannot win.
+ * Written after the master scene loads and re-applied after the customer
+ * overlay so a stray customer key cannot win.
  */
 export function applyMasterOnlyFields(
   engine: CreativeEngine,
@@ -584,41 +682,41 @@ export function applyMasterOnlyFields(
     master.masterOnly?.complianceText ??
     "Master compliance: Template terms apply. Not for unauthorized redistribution.";
 
-  // Keep a variable for tooling/docs, and write the concrete string onto the
-  // locked block for mockup/catalog previews. Print exports hide this block via
-  // applyPrintArtworkOnlyLayout (marketing-only chrome).
   engine.variable.setString("masterCompliance", complianceText);
-
-  const [block] = engine.block.findByName("MasterCompliance");
-  if (block == null) {
-    throw new Error(
-      "Master scene is missing locked MasterCompliance block — regenerate templates/master.json",
-    );
-  }
-  engine.block.replaceText(block, complianceText);
+  engine.block.replaceText(
+    requireBlock(engine, "MasterCompliance"),
+    complianceText,
+  );
 }
 
 /**
- * Merge master (from customer.extends) + customer + product into the engine
- * and return a serializable scene string.
+ * Merge master (from customer.extends) + customer + product into the engine and
+ * return a serializable scene string plus the geometry of the resulting page.
  */
 export async function resolveScene(
   engine: CreativeEngine,
   options: ResolveOptions,
 ): Promise<ResolvedScene> {
-  const customer = resolveCustomer(options.customer);
+  const customer = resolveCustomerArg(options.customer);
   const product = resolveProduct(options.product);
   const area = resolveArea(product, options.areaId);
   const color = resolveColor(product, options.colorId);
   const resolveAssetPath = options.resolveAssetPath ?? defaultResolveAssetPath;
-  const includeMockup = options.includeMockup !== false;
+  const mode: ResolveMode = options.mode ?? "mockup";
+  const dpi = options.dpi ?? DEFAULT_DPI;
 
   // 1. Master named by customer.extends (lowest precedence / base)
   const master = resolveMasterTemplate(customer);
   await engine.scene.loadFromString(master.sceneString!);
+  // Without an explicit typeface CE.SDK falls back to metrics that break every
+  // measured layout below, so this has to happen before anything is placed.
+  applyDocumentTypeface(engine, {
+    spec: master.typeface ?? DEFAULT_TYPEFACE,
+    resolveAssetPath,
+  });
   applyMasterOnlyFields(engine, master);
 
-  // 2. Customer override (brand variables + locked brand assets only)
+  // 2. Customer override — brand variables, printed artwork, locked brand assets
   applyCustomerOverride(engine, customer, {
     resolveAssetPath,
     allowedVariables: master.overrideVariables,
@@ -626,14 +724,18 @@ export async function resolveScene(
   // Re-assert master-only after customer so compliance cannot be overwritten
   applyMasterOnlyFields(engine, master);
 
-  // 3. Product layer (copy, layout, mockup; hero from product or brand-campaign map)
-  const brandCampaignImage = getBrandCampaignImage(customer.id);
-  applyProductLayer(engine, product, area, color, {
-    resolveAssetPath,
-    includeMockup,
-    brandCampaignImage,
-    master,
-  });
+  // 3. Product layer — campaign copy
+  applyProductLayer(engine, product);
+
+  // 4. Lay the resolved scene out for the requested output
+  const pixelSize =
+    mode === "print"
+      ? (() => {
+          const size = printPixelSize(product, area, dpi);
+          applyPrintLayout(engine, master, size, dpi);
+          return size;
+        })()
+      : applyMockupComposition(engine, area, color, { resolveAssetPath });
 
   const sceneString = await engine.scene.saveToString();
 
@@ -644,23 +746,28 @@ export async function resolveScene(
     area,
     color,
     artworkLocation: area.artworkLocation,
+    mode,
+    pixelSize,
+    ...(mode === "print" ? { dpi } : {}),
   };
 }
 
 /**
- * Convenience: resolve and export a JPEG/PNG blob URL.
+ * Convenience for browser callers: resolve and export a blob URL for one page.
  */
 export async function resolveAndExport(
   engine: CreativeEngine,
   options: ResolveOptions,
-  mimeType: "image/png" | "image/jpeg" = "image/jpeg",
+  mimeType: "image/png" | "image/jpeg" = "image/png",
 ): Promise<{ blobUrl: string; resolved: ResolvedScene }> {
   const resolved = await resolveScene(engine, options);
-  const pages = engine.block.findByType("page");
-  const target = pages[0] ?? engine.scene.get();
-  if (target == null) {
+  const page = engine.block.findByType("page")[0] ?? engine.scene.get();
+  if (page == null) {
     throw new Error("Nothing to export after resolve");
   }
-  const blob = await engine.block.export(target, { mimeType });
+  const blob = await engine.block.export(page, { mimeType });
   return { blobUrl: URL.createObjectURL(blob), resolved };
 }
+
+export { resolveCustomerArtwork };
+export type { CustomerOverride };

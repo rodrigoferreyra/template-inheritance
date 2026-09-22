@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "description": "Product catalog for CE.SDK swag personalization. Each product defines artworkLocation, a setSourceSet-compatible heroImage ({uri,width,height}), and campaign copy (headline/body/cta).",
+  "description": "Product catalog for CE.SDK swag personalization. Each product defines the physical print size (pageSize in designUnit) and where that print sits on the mockup photo (artworkLocation, in mockup-image pixels), plus campaign copy (headline/body/cta). Products never carry brand artwork — the printed artwork comes from the customer layer.",
   "count": 50,
   "products": [
     {
@@ -115,12 +115,7 @@
       ],
       "headline": "Classic Tee 1 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-02",
@@ -234,12 +229,7 @@
       ],
       "headline": "Classic Tee 2 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-03",
@@ -353,12 +343,7 @@
       ],
       "headline": "Classic Tee 3 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-04",
@@ -472,12 +457,7 @@
       ],
       "headline": "Classic Tee 4 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-05",
@@ -591,12 +571,7 @@
       ],
       "headline": "Classic Tee 5 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-06",
@@ -710,12 +685,7 @@
       ],
       "headline": "Classic Tee 6 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-07",
@@ -829,12 +799,7 @@
       ],
       "headline": "Classic Tee 7 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-08",
@@ -948,12 +913,7 @@
       ],
       "headline": "Classic Tee 8 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-09",
@@ -1067,12 +1027,7 @@
       ],
       "headline": "Classic Tee 9 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "tshirt-10",
@@ -1186,12 +1141,7 @@
       ],
       "headline": "Classic Tee 10 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "hoodie-01",
@@ -1265,9 +1215,9 @@
           },
           "artworkLocation": {
             "x": 260,
-            "y": 280,
+            "y": 300,
             "width": 380,
-            "height": 420,
+            "height": 443,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1284,12 +1234,7 @@
       ],
       "headline": "Pullover Hoodie 1 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "hoodie-02",
@@ -1363,9 +1308,9 @@
           },
           "artworkLocation": {
             "x": 260,
-            "y": 280,
+            "y": 300,
             "width": 380,
-            "height": 420,
+            "height": 443,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1382,12 +1327,7 @@
       ],
       "headline": "Pullover Hoodie 2 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "hoodie-03",
@@ -1461,9 +1401,9 @@
           },
           "artworkLocation": {
             "x": 260,
-            "y": 280,
+            "y": 300,
             "width": 380,
-            "height": 420,
+            "height": 443,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1480,12 +1420,7 @@
       ],
       "headline": "Pullover Hoodie 3 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "hoodie-04",
@@ -1559,9 +1494,9 @@
           },
           "artworkLocation": {
             "x": 260,
-            "y": 280,
+            "y": 300,
             "width": 380,
-            "height": 420,
+            "height": 443,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1578,12 +1513,7 @@
       ],
       "headline": "Pullover Hoodie 4 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "hoodie-05",
@@ -1657,9 +1587,9 @@
           },
           "artworkLocation": {
             "x": 260,
-            "y": 280,
+            "y": 300,
             "width": 380,
-            "height": 420,
+            "height": 443,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1676,12 +1606,7 @@
       ],
       "headline": "Pullover Hoodie 5 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "cap-01",
@@ -1735,11 +1660,11 @@
           "label": "Front Panel",
           "pageSize": {
             "width": 4.5,
-            "height": 2.5
+            "height": 3
           },
           "artworkLocation": {
             "x": 218,
-            "y": 230,
+            "y": 300,
             "width": 300,
             "height": 200,
             "unit": "px",
@@ -1763,10 +1688,10 @@
             "height": 1.2
           },
           "artworkLocation": {
-            "x": 269,
-            "y": 244,
-            "width": 199,
-            "height": 92,
+            "x": 243,
+            "y": 330,
+            "width": 250,
+            "height": 100,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1783,12 +1708,7 @@
       ],
       "headline": "Dad Cap 1 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "cap-02",
@@ -1842,11 +1762,11 @@
           "label": "Front Panel",
           "pageSize": {
             "width": 4.5,
-            "height": 2.5
+            "height": 3
           },
           "artworkLocation": {
             "x": 218,
-            "y": 230,
+            "y": 300,
             "width": 300,
             "height": 200,
             "unit": "px",
@@ -1870,10 +1790,10 @@
             "height": 1.2
           },
           "artworkLocation": {
-            "x": 269,
-            "y": 244,
-            "width": 199,
-            "height": 92,
+            "x": 243,
+            "y": 330,
+            "width": 250,
+            "height": 100,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1890,12 +1810,7 @@
       ],
       "headline": "Dad Cap 2 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "cap-03",
@@ -1949,11 +1864,11 @@
           "label": "Front Panel",
           "pageSize": {
             "width": 4.5,
-            "height": 2.5
+            "height": 3
           },
           "artworkLocation": {
             "x": 218,
-            "y": 230,
+            "y": 300,
             "width": 300,
             "height": 200,
             "unit": "px",
@@ -1977,10 +1892,10 @@
             "height": 1.2
           },
           "artworkLocation": {
-            "x": 269,
-            "y": 244,
-            "width": 199,
-            "height": 92,
+            "x": 243,
+            "y": 330,
+            "width": 250,
+            "height": 100,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -1997,12 +1912,7 @@
       ],
       "headline": "Dad Cap 3 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "cap-04",
@@ -2056,11 +1966,11 @@
           "label": "Front Panel",
           "pageSize": {
             "width": 4.5,
-            "height": 2.5
+            "height": 3
           },
           "artworkLocation": {
             "x": 218,
-            "y": 230,
+            "y": 300,
             "width": 300,
             "height": 200,
             "unit": "px",
@@ -2084,10 +1994,10 @@
             "height": 1.2
           },
           "artworkLocation": {
-            "x": 269,
-            "y": 244,
-            "width": 199,
-            "height": 92,
+            "x": 243,
+            "y": 330,
+            "width": 250,
+            "height": 100,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -2104,12 +2014,7 @@
       ],
       "headline": "Dad Cap 4 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "cap-05",
@@ -2163,11 +2068,11 @@
           "label": "Front Panel",
           "pageSize": {
             "width": 4.5,
-            "height": 2.5
+            "height": 3
           },
           "artworkLocation": {
             "x": 218,
-            "y": 230,
+            "y": 300,
             "width": 300,
             "height": 200,
             "unit": "px",
@@ -2191,10 +2096,10 @@
             "height": 1.2
           },
           "artworkLocation": {
-            "x": 269,
-            "y": 244,
-            "width": 199,
-            "height": 92,
+            "x": 243,
+            "y": 330,
+            "width": 250,
+            "height": 100,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -2211,12 +2116,7 @@
       ],
       "headline": "Dad Cap 5 — made for your brand",
       "body": "Soft hand-feel, durable print, ready for everyday wear.",
-      "cta": "Shop the fit",
-      "heroImage": {
-        "uri": "/images/placeholder-1.png",
-        "width": 240,
-        "height": 240
-      }
+      "cta": "Shop the fit"
     },
     {
       "id": "mug-01",
@@ -2269,12 +2169,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2293,12 +2193,7 @@
       ],
       "headline": "Ceramic Mug 1 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "mug-02",
@@ -2351,12 +2246,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2375,12 +2270,7 @@
       ],
       "headline": "Ceramic Mug 2 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "mug-03",
@@ -2433,12 +2323,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2457,12 +2347,7 @@
       ],
       "headline": "Ceramic Mug 3 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "mug-04",
@@ -2515,12 +2400,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2539,12 +2424,7 @@
       ],
       "headline": "Ceramic Mug 4 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "mug-05",
@@ -2597,12 +2477,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2621,12 +2501,7 @@
       ],
       "headline": "Ceramic Mug 5 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "mug-06",
@@ -2679,12 +2554,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 8.5,
-            "height": 3.5
+            "width": 3.5,
+            "height": 4.5
           },
           "artworkLocation": {
-            "x": 155,
-            "y": 186,
+            "x": 240,
+            "y": 180,
             "width": 300,
             "height": 386,
             "unit": "px",
@@ -2703,12 +2578,7 @@
       ],
       "headline": "Ceramic Mug 6 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "tumbler-01",
@@ -2761,12 +2631,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 9,
-            "height": 7
+            "width": 4,
+            "height": 6.5
           },
           "artworkLocation": {
             "x": 190,
-            "y": 280,
+            "y": 240,
             "width": 320,
             "height": 520,
             "unit": "px",
@@ -2785,12 +2655,7 @@
       ],
       "headline": "Travel Tumbler 1 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "tumbler-02",
@@ -2843,12 +2708,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 9,
-            "height": 7
+            "width": 4,
+            "height": 6.5
           },
           "artworkLocation": {
             "x": 190,
-            "y": 280,
+            "y": 240,
             "width": 320,
             "height": 520,
             "unit": "px",
@@ -2867,12 +2732,7 @@
       ],
       "headline": "Travel Tumbler 2 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "tumbler-03",
@@ -2925,12 +2785,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 9,
-            "height": 7
+            "width": 4,
+            "height": 6.5
           },
           "artworkLocation": {
             "x": 190,
-            "y": 280,
+            "y": 240,
             "width": 320,
             "height": 520,
             "unit": "px",
@@ -2949,12 +2809,7 @@
       ],
       "headline": "Travel Tumbler 3 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "tumbler-04",
@@ -3007,12 +2862,12 @@
           "id": "wrap",
           "label": "Wrap",
           "pageSize": {
-            "width": 9,
-            "height": 7
+            "width": 4,
+            "height": 6.5
           },
           "artworkLocation": {
             "x": 190,
-            "y": 280,
+            "y": 240,
             "width": 320,
             "height": 520,
             "unit": "px",
@@ -3031,12 +2886,7 @@
       ],
       "headline": "Travel Tumbler 4 — made for your brand",
       "body": "Dishwasher-safe finish with crisp wrap artwork.",
-      "cta": "Add to cart",
-      "heroImage": {
-        "uri": "/images/placeholder-2.png",
-        "width": 200,
-        "height": 280
-      }
+      "cta": "Add to cart"
     },
     {
       "id": "phone-case-01",
@@ -3093,10 +2943,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 73,
-            "y": 321,
-            "width": 348,
-            "height": 341,
+            "x": 124,
+            "y": 212,
+            "width": 246,
+            "height": 492,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3113,12 +2963,7 @@
       ],
       "headline": "Phone Case 1 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "phone-case-02",
@@ -3175,10 +3020,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 73,
-            "y": 321,
-            "width": 348,
-            "height": 341,
+            "x": 124,
+            "y": 212,
+            "width": 246,
+            "height": 492,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3195,12 +3040,7 @@
       ],
       "headline": "Phone Case 2 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "phone-case-03",
@@ -3257,10 +3097,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 73,
-            "y": 321,
-            "width": 348,
-            "height": 341,
+            "x": 124,
+            "y": 212,
+            "width": 246,
+            "height": 492,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3277,12 +3117,7 @@
       ],
       "headline": "Phone Case 3 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "phone-case-04",
@@ -3339,10 +3174,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 73,
-            "y": 321,
-            "width": 348,
-            "height": 341,
+            "x": 124,
+            "y": 212,
+            "width": 246,
+            "height": 492,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3359,12 +3194,7 @@
       ],
       "headline": "Phone Case 4 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "phone-case-05",
@@ -3421,10 +3251,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 73,
-            "y": 321,
-            "width": 348,
-            "height": 341,
+            "x": 124,
+            "y": 212,
+            "width": 246,
+            "height": 492,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3441,12 +3271,7 @@
       ],
       "headline": "Phone Case 5 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "tote-01",
@@ -3503,10 +3328,10 @@
             "height": 12
           },
           "artworkLocation": {
-            "x": 132,
-            "y": 619,
-            "width": 489,
-            "height": 432,
+            "x": 145,
+            "y": 420,
+            "width": 460,
+            "height": 460,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3523,12 +3348,7 @@
       ],
       "headline": "Canvas Tote 1 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "tote-02",
@@ -3585,10 +3405,10 @@
             "height": 12
           },
           "artworkLocation": {
-            "x": 132,
-            "y": 619,
-            "width": 489,
-            "height": 432,
+            "x": 145,
+            "y": 420,
+            "width": 460,
+            "height": 460,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3605,12 +3425,7 @@
       ],
       "headline": "Canvas Tote 2 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "tote-03",
@@ -3667,10 +3482,10 @@
             "height": 12
           },
           "artworkLocation": {
-            "x": 132,
-            "y": 619,
-            "width": 489,
-            "height": 432,
+            "x": 145,
+            "y": 420,
+            "width": 460,
+            "height": 460,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3687,12 +3502,7 @@
       ],
       "headline": "Canvas Tote 3 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "tote-04",
@@ -3749,10 +3559,10 @@
             "height": 12
           },
           "artworkLocation": {
-            "x": 132,
-            "y": 619,
-            "width": 489,
-            "height": 432,
+            "x": 145,
+            "y": 420,
+            "width": 460,
+            "height": 460,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3769,12 +3579,7 @@
       ],
       "headline": "Canvas Tote 4 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "tote-05",
@@ -3831,10 +3636,10 @@
             "height": 12
           },
           "artworkLocation": {
-            "x": 132,
-            "y": 619,
-            "width": 489,
-            "height": 432,
+            "x": 145,
+            "y": 420,
+            "width": 460,
+            "height": 460,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -3851,12 +3656,7 @@
       ],
       "headline": "Canvas Tote 5 — made for your brand",
       "body": "Everyday carry with your brand front and center.",
-      "cta": "Get yours",
-      "heroImage": {
-        "uri": "/images/placeholder-3.png",
-        "width": 280,
-        "height": 200
-      }
+      "cta": "Get yours"
     },
     {
       "id": "poster-01",
@@ -3913,9 +3713,9 @@
             "height": 24
           },
           "artworkLocation": {
-            "x": 60,
+            "x": 45,
             "y": 60,
-            "width": 780,
+            "width": 810,
             "height": 1080,
             "unit": "px",
             "coordinateSpace": "mockup"
@@ -3933,12 +3733,7 @@
       ],
       "headline": "Matte Poster 1 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "poster-02",
@@ -3995,9 +3790,9 @@
             "height": 24
           },
           "artworkLocation": {
-            "x": 60,
+            "x": 45,
             "y": 60,
-            "width": 780,
+            "width": 810,
             "height": 1080,
             "unit": "px",
             "coordinateSpace": "mockup"
@@ -4015,12 +3810,7 @@
       ],
       "headline": "Matte Poster 2 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "poster-03",
@@ -4077,9 +3867,9 @@
             "height": 24
           },
           "artworkLocation": {
-            "x": 60,
+            "x": 45,
             "y": 60,
-            "width": 780,
+            "width": 810,
             "height": 1080,
             "unit": "px",
             "coordinateSpace": "mockup"
@@ -4097,12 +3887,7 @@
       ],
       "headline": "Matte Poster 3 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "poster-04",
@@ -4159,9 +3944,9 @@
             "height": 24
           },
           "artworkLocation": {
-            "x": 60,
+            "x": 45,
             "y": 60,
-            "width": 780,
+            "width": 810,
             "height": 1080,
             "unit": "px",
             "coordinateSpace": "mockup"
@@ -4179,12 +3964,7 @@
       ],
       "headline": "Matte Poster 4 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "poster-05",
@@ -4241,9 +4021,9 @@
             "height": 24
           },
           "artworkLocation": {
-            "x": 60,
+            "x": 45,
             "y": 60,
-            "width": 780,
+            "width": 810,
             "height": 1080,
             "unit": "px",
             "coordinateSpace": "mockup"
@@ -4261,12 +4041,7 @@
       ],
       "headline": "Matte Poster 5 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "sticker-sheet-01",
@@ -4323,10 +4098,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 40,
-            "y": 40,
-            "width": 520,
-            "height": 820,
+            "x": 60,
+            "y": 90,
+            "width": 480,
+            "height": 720,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -4343,12 +4118,7 @@
       ],
       "headline": "Sticker Sheet 1 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "sticker-sheet-02",
@@ -4405,10 +4175,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 40,
-            "y": 40,
-            "width": 520,
-            "height": 820,
+            "x": 60,
+            "y": 90,
+            "width": 480,
+            "height": 720,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -4425,12 +4195,7 @@
       ],
       "headline": "Sticker Sheet 2 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "sticker-sheet-03",
@@ -4487,10 +4252,10 @@
             "height": 6
           },
           "artworkLocation": {
-            "x": 40,
-            "y": 40,
-            "width": 520,
-            "height": 820,
+            "x": 60,
+            "y": 90,
+            "width": 480,
+            "height": 720,
             "unit": "px",
             "coordinateSpace": "mockup"
           },
@@ -4507,12 +4272,7 @@
       ],
       "headline": "Sticker Sheet 3 — made for your brand",
       "body": "Gallery-ready stock with vivid color reproduction.",
-      "cta": "Order print",
-      "heroImage": {
-        "uri": "/images/minimalist-bean.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Order print"
     },
     {
       "id": "pillow-01",
@@ -4589,12 +4349,7 @@
       ],
       "headline": "Throw Pillow 1 — made for your brand",
       "body": "Comfort-first materials with lasting print quality.",
-      "cta": "Bring it home",
-      "heroImage": {
-        "uri": "/images/minimalist-scoop.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Bring it home"
     },
     {
       "id": "pillow-02",
@@ -4671,12 +4426,7 @@
       ],
       "headline": "Throw Pillow 2 — made for your brand",
       "body": "Comfort-first materials with lasting print quality.",
-      "cta": "Bring it home",
-      "heroImage": {
-        "uri": "/images/minimalist-scoop.png",
-        "width": 1280,
-        "height": 720
-      }
+      "cta": "Bring it home"
     }
   ]
 }
