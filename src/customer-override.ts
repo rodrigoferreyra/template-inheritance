@@ -1,16 +1,21 @@
 /**
  * Apply a customer override on top of a loaded master scene.
  *
- * Used by resolveScene (catalog inheritance). Hero / product imagery is applied
- * from the product catalog layer, not here.
+ * The customer layer owns the brand: the artwork that gets printed, the logo,
+ * the palette, the contact block and the legal line. It owns nothing else —
+ * campaign copy belongs to the product layer and compliance belongs to the
+ * master, and both are rejected here rather than silently accepted.
  */
 
 import type CreativeEngine from "@cesdk/engine";
 
-import type { CustomerOverride } from "./app/customer-catalog";
+import {
+  resolveCustomerArtwork,
+  type CustomerOverride,
+} from "./customer-registry";
 import { replaceImageByName, setColorFillByName } from "./imgly/utils";
 
-/** Variables the customer layer is allowed to write (never hero/campaign/compliance). */
+/** Variables the customer layer is allowed to write. */
 const DEFAULT_CUSTOMER_VARIABLES = [
   "logoUri",
   "primaryColor",
@@ -23,6 +28,7 @@ const DEFAULT_CUSTOMER_VARIABLES = [
   "brandName",
 ] as const;
 
+/** Fields that belong to the product or the master, never to a customer file. */
 const FORBIDDEN_CUSTOMER_VARIABLES = [
   "heroImage",
   "headline",
@@ -33,10 +39,10 @@ const FORBIDDEN_CUSTOMER_VARIABLES = [
 ] as const;
 
 /**
- * 1. Writes allowed `variables` via `engine.variable.setString` (contact block,
- *    legal, palette hex, logoUri, brandName) — never hero/campaign/compliance.
- * 2. Resolves `logoUri` → locked `BrandLogo` image fill via setSourceSet (required).
- * 3. Resolves `primaryColor` / `secondaryColor` → locked palette swatches (required).
+ * 1. Rejects product/master fields that leaked into the customer file.
+ * 2. Writes the allowed `variables` via `engine.variable.setString`.
+ * 3. Resolves the brand artwork → locked `HeroImage` placeholder (this is what prints).
+ * 4. Resolves `logoUri` → locked `BrandLogo` and the palette hexes → locked swatches.
  */
 export function applyCustomerOverride(
   engine: CreativeEngine,
@@ -68,6 +74,19 @@ export function applyCustomerOverride(
     }
     engine.variable.setString(key, value);
   }
+
+  // The printed artwork is brand data: one change here moves every product.
+  const artwork = resolveCustomerArtwork(customer);
+  replaceImageByName(
+    engine,
+    "HeroImage",
+    {
+      uri: resolve(artwork.uri),
+      width: artwork.width,
+      height: artwork.height,
+    },
+    { required: true },
+  );
 
   const logoUri = customer.variables.logoUri;
   if (!logoUri) {

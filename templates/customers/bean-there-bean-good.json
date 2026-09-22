@@ -2,7 +2,12 @@
   "id": "bean-there-bean-good",
   "name": "Bean there Bean good",
   "extends": "../master.json",
-  "description": "Customer override for Bean there Bean good \u2014 logo, palette, and contact only (extends master).",
+  "description": "Customer override for Bean there Bean good — brand only: printed artwork, logo, palette, contact, legal. Extends the master; never sets campaign copy or compliance.",
+  "artwork": {
+    "uri": "/images/minimalist-bean.png",
+    "width": 1280,
+    "height": 720
+  },
   "variables": {
     "brandName": "Bean there Bean good",
     "logoUri": "/images/logo-bean.png",
@@ -12,6 +17,6 @@
     "contactPhone": "+1 (415) 555-0142",
     "contactEmail": "hello@beanthere.example",
     "contactAddress": "214 Folger Ave, San Francisco, CA",
-    "legalDisclaimer": "\u00a9 Bean there Bean good. All rights reserved."
+    "legalDisclaimer": "© Bean there Bean good. All rights reserved."
   }
 }

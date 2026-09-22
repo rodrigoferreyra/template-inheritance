@@ -1,8 +1,0 @@
-{
-  "description": "Default HeroImage campaign art for prints/mockups, keyed by customer id. Landscape minimalist brand scenes sized for the master's Cover-fill HeroImage (~952×560). Kept out of templates/customers/*.json so customer overrides stay logo/palette/contact/legal only. Locked BrandLogo still uses each customer's logoUri. Product-layer optional heroImage still wins when set on a SKU.",
-  "byCustomerId": {
-    "bean-there-bean-good": "/images/minimalist-bean.png",
-    "scoop-there-it-is": "/images/minimalist-scoop.png",
-    "bun-intended": "/images/minimalist-bun.png"
-  }
-}

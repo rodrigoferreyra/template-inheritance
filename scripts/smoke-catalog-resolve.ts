@@ -18,7 +18,7 @@ async function main(): Promise<void> {
   const outDir = path.join("output", "smoke-catalog");
 
   const manifest = await runCatalogRender({
-    customerId,
+    customer: customerId,
     outDir,
     limit: 1,
     areas: "first",
@@ -61,9 +61,17 @@ async function main(): Promise<void> {
   }
 
   const meta = JSON.parse(readFileSync(resolvedJson, "utf8")) as {
+    printPixelSize?: { width: number; height: number };
     artworkLocation?: { width: number; height: number };
     includeMockup?: boolean;
   };
+  if (
+    !meta.printPixelSize ||
+    !(meta.printPixelSize.width > 0) ||
+    !(meta.printPixelSize.height > 0)
+  ) {
+    throw new Error("resolved.json missing positive printPixelSize");
+  }
   if (
     !meta.artworkLocation ||
     !(meta.artworkLocation.width > 0) ||
@@ -72,14 +80,16 @@ async function main(): Promise<void> {
     throw new Error("resolved.json missing positive artworkLocation size");
   }
 
-  // Print plate must match artworkLocation (HeroImage-only production export)
+  // Print plate is the physical page at the requested DPI (HeroImage-only
+  // production export). artworkLocation lives in mockup pixel space and no
+  // longer describes the plate.
   const printMeta = await sharp(printAbs).metadata();
   if (
-    printMeta.width !== meta.artworkLocation.width ||
-    printMeta.height !== meta.artworkLocation.height
+    printMeta.width !== meta.printPixelSize.width ||
+    printMeta.height !== meta.printPixelSize.height
   ) {
     throw new Error(
-      `print.png size ${printMeta.width}x${printMeta.height} !== artworkLocation ${meta.artworkLocation.width}x${meta.artworkLocation.height}`,
+      `print.png size ${printMeta.width}x${printMeta.height} !== printPixelSize ${meta.printPixelSize.width}x${meta.printPixelSize.height}`,
     );
   }
 

@@ -1,5 +1,5 @@
 /**
- * Shared catalog batch render used by the CLI.
+ * Shared catalog batch render, used by the CLI and by the dev-server API.
  *
  * License policy (strict):
  * - Always attempt CreativeEngine.init() WITH a license first when one is configured.
@@ -22,20 +22,28 @@ import CreativeEngine from "@cesdk/node";
 import type CreativeEngineBrowser from "@cesdk/engine";
 
 import {
-  assertHeroCoverageForCustomer,
-  getBrandCampaignImage,
+  assertProductsCarryNoBrandArt,
   getProducts,
-  resolveHeroImageSource,
+  printPixelSize,
   resolveScene,
+  DEFAULT_DPI,
   type Product,
   type ProductArea,
   type ProductColor,
 } from "../../src/resolve";
-import { CUSTOMERS_BY_ID } from "../../src/app/customer-catalog";
+import {
+  resolveCustomerArtwork,
+  requireCustomer,
+  type CustomerOverride,
+} from "../../src/customer-registry";
+import { registerCustomersFromDisk } from "./customers-node";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const REPO_ROOT = path.resolve(__dirname, "../..");
 const PUBLIC_DIR = path.join(REPO_ROOT, "public");
+
+// Customers are discovered from templates/customers/ at import time.
+registerCustomersFromDisk(REPO_ROOT);
 
 export function createFileAssetResolver(publicDir: string = PUBLIC_DIR) {
   return (assetPath: string): string => {
@@ -85,8 +93,8 @@ function mockupUriOnDisk(
   if (!image) return null;
   const withColor = image.uri.split("{{color}}").join(color.id);
   const fileUrl = resolveAssetPath(withColor);
-  const filePath = fileURLToPath(fileUrl);
-  return existsSync(filePath) ? fileUrl : null;
+  if (!fileUrl.startsWith("file:")) return fileUrl;
+  return existsSync(fileURLToPath(fileUrl)) ? fileUrl : null;
 }
 
 function assertLocalAssetExists(
@@ -108,52 +116,49 @@ function assertLocalAssetExists(
 }
 
 /**
- * Validate customer + hero/logo assets before starting the engine.
+ * Validate the layering and the brand assets before starting the engine.
  */
 export function preflightCatalogRender(
-  customerId: string,
+  customer: CustomerOverride,
   products: Product[],
   resolveAssetPath: (p: string) => string,
+  dpi: number,
 ): void {
-  const customer = CUSTOMERS_BY_ID[customerId];
-  if (!customer) {
-    throw new Error(`Unknown customer override: ${customerId}`);
-  }
   if (!customer.extends?.trim()) {
     throw new Error(
-      `Customer "${customerId}" is missing required "extends" (master template ref)`,
+      `Customer "${customer.id}" is missing required "extends" (master template ref)`,
     );
   }
 
-  assertHeroCoverageForCustomer(customerId, products);
+  // The catalog must not carry brand art, or customers bleed into each other.
+  assertProductsCarryNoBrandArt(products);
+
+  const artwork = resolveCustomerArtwork(customer);
+  assertLocalAssetExists(
+    `Customer "${customer.id}" artwork`,
+    artwork.uri,
+    resolveAssetPath,
+  );
 
   const logoUri = customer.variables.logoUri;
   if (!logoUri) {
-    throw new Error(`Customer "${customerId}" is missing variables.logoUri`);
+    throw new Error(`Customer "${customer.id}" is missing variables.logoUri`);
   }
   assertLocalAssetExists(
-    `Customer "${customerId}" logoUri`,
+    `Customer "${customer.id}" logoUri`,
     logoUri,
     resolveAssetPath,
   );
 
-  const campaign = getBrandCampaignImage(customerId);
-  if (campaign) {
-    assertLocalAssetExists(
-      `brand-campaign for "${customerId}"`,
-      campaign,
-      resolveAssetPath,
-    );
-  }
-
+  // Fail before the engine starts if any plate would be absurdly large.
   for (const product of products) {
-    const hero = resolveHeroImageSource(customerId, product);
-    if (hero) {
-      assertLocalAssetExists(
-        `product "${product.id}" heroImage`,
-        hero.uri,
-        resolveAssetPath,
-      );
+    for (const area of product.areas) {
+      const size = printPixelSize(product, area, dpi);
+      if (size.width > 20000 || size.height > 20000) {
+        throw new Error(
+          `Print plate for ${product.id}/${area.id} would be ${size.width}×${size.height}px at ${dpi} DPI`,
+        );
+      }
     }
   }
 }
@@ -163,15 +168,18 @@ export interface CatalogRenderResult {
   areaId: string;
   colorId: string;
   print?: string;
+  printSize?: { width: number; height: number };
   mockup?: string;
   error?: string;
 }
 
 export interface CatalogRenderManifest {
   customer: string;
+  customerName: string;
   outDir: string;
   colorId: string | null;
   areas: "first" | "all";
+  dpi: number;
   productCount: number;
   areaCount: number;
   ok: number;
@@ -184,11 +192,14 @@ export interface CatalogRenderManifest {
 }
 
 export interface CatalogRenderOptions {
-  customerId: string;
+  /** Registered customer id, or an ad-hoc override (e.g. built from an upload). */
+  customer: string | CustomerOverride;
   outDir?: string;
   colorId?: string;
   limit?: number;
   areas?: "first" | "all";
+  /** Print resolution for print.png. Defaults to {@link DEFAULT_DPI}. */
+  dpi?: number;
   /**
    * When true, if licensed CreativeEngine.init() fails, retry without a license
    * (watermarked evaluation mode). Default false — licensed failure throws.
@@ -200,15 +211,16 @@ export interface CatalogRenderOptions {
 async function renderProductArea(
   engine: Awaited<ReturnType<typeof CreativeEngine.init>>,
   options: {
-    customerId: string;
+    customer: CustomerOverride;
     product: Product;
     area: ProductArea;
     colorId?: string;
+    dpi: number;
     outDir: string;
     resolveAssetPath: (p: string) => string;
   },
 ): Promise<CatalogRenderResult> {
-  const { customerId, product, area, outDir, resolveAssetPath } = options;
+  const { customer, product, area, dpi, outDir, resolveAssetPath } = options;
   const color =
     (options.colorId
       ? product.colors.find((c) => c.id === options.colorId)
@@ -228,54 +240,62 @@ async function renderProductArea(
   try {
     const hasMockup = mockupUriOnDisk(area, color, resolveAssetPath) != null;
 
-    const resolved = await resolveScene(
+    // Production plate: customer artwork only, at the product's physical size.
+    const printed = await resolveScene(
       engine as unknown as CreativeEngineBrowser,
       {
-        customer: customerId,
+        customer,
         product,
         areaId: area.id,
         colorId: color.id,
         resolveAssetPath,
-        includeMockup: false,
+        mode: "print",
+        dpi,
       },
     );
 
-    const page = engine.block.findByType("page")[0];
-    if (page == null) {
-      throw new Error("No page after resolve");
-    }
-
     const printPath = path.join(areaDir, "print.png");
-    await exportPng(engine, page, printPath);
+    await exportPng(
+      engine,
+      engine.block.findByType("page")[0] as number,
+      printPath,
+    );
     result.print = path.relative(REPO_ROOT, printPath);
+    result.printSize = printed.pixelSize;
 
     if (hasMockup) {
       await resolveScene(engine as unknown as CreativeEngineBrowser, {
-        customer: customerId,
+        customer,
         product,
         areaId: area.id,
         colorId: color.id,
         resolveAssetPath,
-        includeMockup: true,
+        mode: "mockup",
       });
-      const scene = engine.scene.get();
-      if (scene != null) {
-        const mockupPath = path.join(areaDir, "mockup.png");
-        await exportPng(engine, scene, mockupPath);
-        result.mockup = path.relative(REPO_ROOT, mockupPath);
-      }
+      const mockupPath = path.join(areaDir, "mockup.png");
+      await exportPng(
+        engine,
+        engine.block.findByType("page")[0] as number,
+        mockupPath,
+      );
+      result.mockup = path.relative(REPO_ROOT, mockupPath);
     }
 
     writeFileSync(
       path.join(areaDir, "resolved.json"),
       JSON.stringify(
         {
-          customer: resolved.customer.id,
-          product: resolved.product.id,
-          area: resolved.area.id,
-          color: resolved.color.id,
-          artworkLocation: resolved.artworkLocation,
-          includeMockup: hasMockup,
+          customer: customer.id,
+          artwork: resolveCustomerArtwork(customer).uri,
+          product: product.id,
+          area: area.id,
+          color: color.id,
+          pageSize: area.pageSize,
+          designUnit: product.designUnit,
+          dpi,
+          printPixelSize: printed.pixelSize,
+          artworkLocation: area.artworkLocation,
+          mockup: hasMockup,
         },
         null,
         2,
@@ -362,10 +382,13 @@ export async function runCatalogRender(
 ): Promise<CatalogRenderManifest> {
   loadDotEnv();
 
-  const customerId = options.customerId;
-  if (!customerId) {
-    throw new Error("customerId is required");
+  if (!options.customer) {
+    throw new Error("customer is required");
   }
+  const customer =
+    typeof options.customer === "string"
+      ? requireCustomer(options.customer)
+      : options.customer;
 
   const allowEvaluationMode = options.allowEvaluationMode === true;
   const outRoot = path.resolve(
@@ -374,6 +397,7 @@ export async function runCatalogRender(
   );
   const colorId = options.colorId;
   const areasMode = options.areas === "first" ? "first" : "all";
+  const dpi = options.dpi ?? DEFAULT_DPI;
   const log = options.onProgress ?? (() => undefined);
 
   const products = getProducts();
@@ -386,7 +410,7 @@ export async function runCatalogRender(
     process.env.CESDK_LICENSE || process.env.VITE_CESDK_LICENSE || undefined;
 
   const resolveAssetPath = createFileAssetResolver(PUBLIC_DIR);
-  preflightCatalogRender(customerId, selected, resolveAssetPath);
+  preflightCatalogRender(customer, selected, resolveAssetPath, dpi);
 
   const packageAssets = pathToFileURL(
     path.join(REPO_ROOT, "node_modules/@cesdk/node/assets"),
@@ -403,14 +427,14 @@ export async function runCatalogRender(
   });
 
   mkdirSync(outRoot, { recursive: true });
-  const customerOut = path.join(outRoot, customerId);
+  const customerOut = path.join(outRoot, customer.id);
   if (existsSync(customerOut)) {
     rmSync(customerOut, { recursive: true, force: true });
   }
   mkdirSync(customerOut, { recursive: true });
 
   log(
-    `Rendering ${selected.length}/${products.length} products for "${customerId}" → ${path.relative(REPO_ROOT, customerOut)}`,
+    `Rendering ${selected.length}/${products.length} products for "${customer.id}" at ${dpi} DPI → ${path.relative(REPO_ROOT, customerOut)}`,
   );
 
   const results: CatalogRenderResult[] = [];
@@ -424,10 +448,11 @@ export async function runCatalogRender(
       for (const area of areas) {
         log(`  ${product.id}/${area.id} …`);
         const entry = await renderProductArea(engine, {
-          customerId,
+          customer,
           product,
           area,
           colorId,
+          dpi,
           outDir: customerOut,
           resolveAssetPath,
         });
@@ -436,10 +461,11 @@ export async function runCatalogRender(
           log(`FAIL ${entry.error}`);
         } else {
           const bits = [
-            entry.print && "print",
+            entry.print &&
+              `print ${entry.printSize?.width}×${entry.printSize?.height}`,
             entry.mockup && "mockup",
           ].filter(Boolean);
-          log(`ok (${bits.join("+")})`);
+          log(`ok (${bits.join(" + ")})`);
         }
       }
     }
@@ -452,10 +478,12 @@ export async function runCatalogRender(
     : undefined;
 
   const manifest: CatalogRenderManifest = {
-    customer: customerId,
+    customer: customer.id,
+    customerName: customer.name,
     outDir: path.relative(REPO_ROOT, customerOut),
     colorId: colorId ?? null,
     areas: areasMode,
+    dpi,
     productCount: selected.length,
     areaCount: results.length,
     elapsedMs: Date.now() - started,

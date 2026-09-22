@@ -87,7 +87,7 @@ export function catalogApiPlugin(): Plugin {
             }
 
             const manifest: CatalogRenderManifest = await runCatalogRender({
-              customerId: body.customerId,
+              customer: body.customerId,
               limit: body.limit,
               areas: body.areas ?? "all",
               colorId: body.colorId,
