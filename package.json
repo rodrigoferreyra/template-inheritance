@@ -26,6 +26,9 @@
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
     "qa": "npm run check:all && npm run test:unit",
     "ci": "npm run check:all && npm run test:all",
+    "build:master": "tsx scripts/build-master.ts",
+    "build:assets": "tsx scripts/build-product-assets.ts",
+    "build:product-assets": "tsx scripts/build-product-assets.ts",
     "render:catalog": "tsx scripts/render-catalog.ts"
   },
   "dependencies": {

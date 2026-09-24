@@ -19,20 +19,19 @@ Built with [CreativeEditor SDK (CE.SDK)](https://img.ly/creative-sdk) by [IMG.LY
 
 ## How it works
 
-Template inheritance keeps brand control and product scale in separate layers. The **master** owns locked layout and a master-only compliance footer. Each **customer** file overrides only brand fields (logo, palette, contact, legal) and points at the master through an `extends` field. Each **product** supplies campaign copy, a `heroImage`, and an `artworkLocation`.
+Template inheritance keeps brand control and product scale in separate layers. The **master** owns locked layout and a master-only compliance footer. Each **customer** file overrides brand fields (logo, palette, contact, legal, and printed `artwork`) and points at the master through an `extends` field. Each **product** supplies campaign copy plus print geometry (`pageSize`, `artworkLocation`).
 
 At resolve time, `resolveScene` in `src/resolve.ts` loads the master named by `extends`, applies the customer override, re-applies master-only compliance so customers cannot override it, then applies product data. The batch renderer walks every SKU for a chosen customer and writes two PNG files per print area.
 
 | Output | Role |
 | --- | --- |
-| **`print.png`** | Production plate. Contains **`HeroImage` only**, sized to `artworkLocation`. It excludes BrandLogo, headline, body, CTA, contact, legal, and master compliance. |
-| **`mockup.png`** | Marketing preview. Contains the full composition (logo, palette, hero, copy, contact, legal, compliance) composited onto the product photo. |
+| **`print.png`** | Production plate. Contains the customer **artwork** only, sized to `pageSize × DPI`. It excludes BrandLogo, headline, body, CTA, contact, legal, and master compliance. |
+| **`mockup.png`** | Marketing preview. Product photo with artwork applied, plus brand chrome in a caption band. |
 
 ```
-templates/master.json          → locked layout + masterOnly.complianceText
-templates/customers/*.json     → logo, palette, contact, legal (via extends)
-catalog/brand-campaign.json    → default HeroImage campaign art per customer id
-catalog/products.json          → heroImage, headline/body/cta, artworkLocation (50 SKUs)
+templates/master.json          → locked layout + masterOnly.complianceText (from scripts/build-master.ts)
+templates/customers/*.json     → logo, palette, contact, legal, artwork (via extends)
+catalog/products.json          → headline/body/cta, pageSize, artworkLocation (50 SKUs)
 src/resolve.ts                 → merge master → customer → product
 scripts/render-catalog.ts      → headless Node batch (@cesdk/node)
 ```
@@ -42,7 +41,7 @@ scripts/render-catalog.ts      → headless Node batch (@cesdk/node)
 Before you install or run the project, confirm you have:
 
 - **Node.js 20+** and npm (`engines.node` in `package.json`)
-- A **CE.SDK license key** from the [IMG.LY free trial form](https://img.ly/forms/free-trial)
+- A **CE.SDK license key** (see [licensing](https://img.ly/docs/cesdk/js/licensing-8aa063/) and [pricing](https://img.ly/pricing/); trial details are documented there)
 - The included assets under `public/` (brand images, product mockups, and engine assets as shipped in this repository)
 
 ## Set up the project
@@ -150,20 +149,24 @@ output/catalog/<customer-id>/manifest.json
 
 ## Add a new customer
 
-Customer files hold brand data only. Keep product copy and hero artwork out of this layer.
+Customer files hold brand data, including the printed `artwork`. Keep product campaign copy out of this layer.
 
-1. Create `templates/customers/<id>.json` with brand fields and `"extends": "../master.json"`.
-2. Place logo and related assets under `public/` so paths such as `/images/logo-acme.png` resolve.
-3. Optionally add campaign art for the customer in `catalog/brand-campaign.json` under `byCustomerId`.
-4. Register the customer import in `src/app/customer-catalog.ts`.
-5. Confirm `extends` is registered in `MASTER_TEMPLATES_BY_EXTENDS` inside `src/resolve.ts` (default: `../master.json`).
-6. Render a short smoke batch for the new customer.
+1. Create `templates/customers/<id>.json` with brand fields, optional `artwork`, and `"extends": "../master.json"`.
+2. Place logo and artwork assets under `public/` so paths such as `/images/logo-acme.png` resolve.
+3. Drop the file in `templates/customers/` (the browser and Node registries discover it automatically).
+4. Confirm `extends` is registered in `MASTER_TEMPLATES_BY_EXTENDS` inside `src/resolve.ts` (default: `../master.json`).
+5. Render a short smoke batch for the new customer.
 
 ```json
 {
   "id": "acme-merch",
   "name": "Acme Merch Co.",
   "extends": "../master.json",
+  "artwork": {
+    "uri": "/images/logo-acme.png",
+    "width": 200,
+    "height": 200
+  },
   "variables": {
     "brandName": "Acme Merch Co.",
     "logoUri": "/images/logo-acme.png",
@@ -178,8 +181,8 @@ Customer files hold brand data only. Keep product copy and hero artwork out of t
 }
 ```
 
-> **Warning:** Do not put `heroImage`, `headline`, `body`, `cta`, or master-only compliance fields in a customer file.
-> Those campaign fields belong on the product (or brand-campaign map) so one brand does not freeze the same art and copy across every SKU.
+> **Warning:** Do not put `headline`, `body`, `cta`, or master-only compliance fields in a customer file.
+> Campaign copy belongs on the product so SKUs can differ. Printed brand art belongs on the customer (`artwork`), not as per-SKU `heroImage`.
 > Compliance stays on the master so customers cannot override shared legal/policy text.
 
 ```bash
@@ -189,8 +192,8 @@ npm run render:catalog -- --customer acme-merch --limit 2 --areas first
 ## Add a new product
 
 1. Append an entry to the `products` array in `catalog/products.json`.
-2. Include `artworkLocation`, a `heroImage` object with `uri`, `width`, and `height` (for `setSourceSet`), and `headline`, `body`, and `cta`.
-3. Add mockup PNGs under `public/` if you want `mockup.png` output.
+2. Include `pageSize`, `artworkLocation`, mockup image paths, and `headline` / `body` / `cta`. Do not add brand `artwork` or `heroImage` on the product (resolve refuses those fields).
+3. Add mockup PNGs under `public/` if you want `mockup.png` output (or run `npm run build:assets`).
 4. Update `count` in `catalog/products.json` if you maintain that field.
 5. Smoke-test with a limited batch render.
 

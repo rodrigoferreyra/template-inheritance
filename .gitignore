@@ -28,3 +28,9 @@ pnpm-lock.yaml
 
 # Release scratch
 release/
+
+article-08-one-master-template-many-variants.md
+article-08-assets
+
+# Obsidian vault (local editor)
+.obsidian/
